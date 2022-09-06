@@ -1,0 +1,96 @@
+---
+title: "About me"
+image: images/profile.jpeg
+about:
+  template: trestles
+  id: hero-heading
+  image-width: 20em
+  image-shape: round
+---
+:::{#hero-heading}
+
+I am a Bayesian Data scientist with a strong background in Bayesian theory, probabilistic programming, time-series analysis, actuarial science, risk modeling, mathematical decision-making, and package developing in `R`. 
+
+`Keywords:` *Forecasting, Bayesian data analyst, Time-series, Probabilistic ML, Mathematics*.
+
+### Skills 
+
+ + `Programming`: *R, Python, Julia, Octave, Matlab, C++, SQL, Git*.
+ 
+ + `Statistical tools`: *SPSS, STATA, R, Excel, Stan, PyMC, Tableau, PowerBI.*
+ 
+ + `Languagues`: *Spanish (native), English (professional), Dutch (Beginner)*.
+
+:::
+ 
+## Research projects
+
+ + [Bayesian order identification of ARMA models with projection predictive inference](https://arxiv.org/abs/2208.14824). *McLatchie Y., Alonzo Matamoros A., Vehtari A. (2022).* In submission to AISTATS 2023.
+ 
+ + [Uncertainty in Bayesian Leave-One-Out Cross-Validation Based Model Comparison](https://arxiv.org/abs/2008.10296). *Sivula T., Magnusson M., Alonzo Matamoros A., Vehtari A. (2022).* Submitted to JMLR. 
+ 
+  + [The Multiple Degrees of freedom Gaussian Process](https://bisp12.imati.cnr.it/virtual_poster.php?ref_code=BISP12). *Alonzo Matamoros A. (2021).* Presented at the Workshop of Bayesian Stochastic Processes.
+  
+  + [Bayesian time-series modeling with bayesforecast](https://cran.r-project.org/web/packages/bayesforecast/index.html). *Alonzo Matamoros A., Vehtari A. (2021).* Presented at the International Society of Bayesian Analysis 2021. 
+  
+ + [An R package for Normality in Stationary Processes](https://arxiv.org/abs/2009.10481). *Alonzo Matamoros A, Nieto-Reyes A. (2020)*. Submitted to Journal of R.
+ 
+## Education 
+
+### Ph.D. candidate in Computer Science.
+
+*Aalto University, Finland |  October 2020*.
+ 
+### M.Sc. in Mathematics and Computer Science. 
+
+*Universidad de Cantabria, Spain |  October 2019 - October 2020*.
+ 
+### Certification in Probability. 
+
+*Society of Actuaries, U.S.A. | November 2016*.
+ 
+### B. Sc. in Mathematics and Computer Science.
+
+*Universidad Nacional Autonoma de Honduras |  October 2010 - October 2015*.
+
+## Experience
+
+### Research contract
+
+*Finnish Center of Artificial Intelligence | October 2020.*
+
+Studied the uncertainty of Cross-Validation methods when comparing probabilistic machine learning models. Proposed an algorithm for automatic forecasting with probabilistic time-series models.
+
+**Skills**: `R, Python, ML, Model Comparison, Data Visualization.`.
+
+### Assistant Professor, Statistics Department 
+
+*Universidad Nacional Autonoma de Honduras (UNAH) | October 2017 –  October 2020.*
+
+Imparted Statistical Inference, Stochastic Processes, and Linear Models classes for the department of Statistics.
+
+**Skills**: `Julia, STATA, Mathematics, Bayesian Statistics`.
+
+### Data analyst
+
+*Instituto Hondureño de Transporte Público | January 2017 –  April 2018.*
+
+Designed statistical models for estimating the public transport demands using simulation and stochastic processes. Adapted dynamic econometric models to analyze Tegucigalpa, Honduras's public transport system.
+
+**Skills**: `Simulation, Probability, Mathematical Modeling, Bayesian Statistics`.
+
+### Actuarial analyst
+
+*Instituto Hondureño de Seguridad Social | January 2016 –  January 2017.*
+
+Wrote scripts for data cleaning and summaries for the actuarial evaluation of the total of affiliates in Honduras' primary pension system. Created big-data modules for the actuarial analysis of the pension system. 
+
+**Skills**:`SQL, Data-cleaning, Big-data, Actuarial Modeling`.
+
+### Statistical Consultant
+
+*Instituto Hondureño de Turismo | January 2015 –  January 2016.*
+
+Designed the Sampling procedure for estimating the Touristic Expenditure in Honduras. I implemented time-series models for analyzing the principal financial indicators related to tourism.
+
+**Skills**: `SPSS, Excell, forecasting, time-series`.

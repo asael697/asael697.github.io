@@ -1,0 +1,37 @@
+---
+title: "Asael Alonzo Matamoros"
+image: images/cover.jpeg
+about:
+  template: marquee
+---
+
+Hello, I'm Asael, a creepy statistician that plays with R, love-hates Python, plays way too much Pokemon, talks a lot of sh@#t, is crazy for traveling, and gets depressed often. Welcome to my blog! :). 
+
+If, for any reason, you still want to know more about my work, please check this section where I brag [about myself](about.qmd) or take home a crappy paper ([CV](CVAsaelWork.pdf)) for free XD. 
+
+  + **Spoilers alert**: I like to sing out loud with my headphones on in public spaces, so if you find a crazy dude badly singing at a coffee shop in front of the computer, it's me! Please say hi! :).
+  
+  + **Btw:** I am currently obsessed with Aurora, Parcels, Bandalos Chinos, Tux Lunan, Jungle and Foals.
+  
+  + **Important:** If you are a developer, R fanatic, or statistician, please star my [bayesforecast package](https://github.com/asael697/bayesforecast).
+
+## sael, an attempt of website/Blog, again?! 
+
+Well, yes! One of my major flaws is my English writing, so I am doing this website for three different purposes:
+
+  - Improve my [R](https://www.r-project.org/), [Python](https://www.python.org/), and [Julia](https://julialang.org/) skills by presenting some time-series analyses using those languages.
+  
+  - Practice my English writing by saturating everyone, including myself, with this bullsh@#t.
+  
+  - Present all those little works and collaborations I do in a compact (*bounded and closed*) set.
+  
+## So what's going on with my life now?
+
+After three long years abroad studying, traveling, researching, surviving this sh@#t-show (COVID), snow, and rejections, I am going home! For now, this webpage is my new attempt to organize my mess.
+
+If you want to know more about it or are having a heavy season and want somebody to talk to, send me a friend request or mail me. Who knows, you might have a new friend :).
+
+## Important 
+ 
+ If you find this a joke or I am too mean, you need to know that I am an ass. Please don't judge me or do it; I don't really care ;).
+ 

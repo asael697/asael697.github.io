@@ -1,0 +1,29 @@
+project:
+  type: website
+  output-dir: docs
+
+website:
+  title: "asael_am"
+  navbar:
+    background: darkblue
+    left:
+      - href: index.qmd
+        text: Home
+      - href: about.qmd
+        text: CV
+    right:
+      - icon: "twitter"        
+        href: https://twitter.com/Asael_am
+      - icon: "github"
+        href: https://github.com/asael697
+      - icon: "linkedin"
+        href: https://www.linkedin.com/in/asael-alonzo-matamoros-8466836a/
+
+format:
+  html:
+    theme: 
+      light: cosmos
+      dark: darkly
+    css: styles.css
+    html-math-method: katex
+    toc: true
