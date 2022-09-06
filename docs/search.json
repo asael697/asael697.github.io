@@ -25,7 +25,7 @@
     "href": "index.html#important",
     "title": "Asael Alonzo Matamoros",
     "section": "Important",
-    "text": "Important\nIf you find this a joke or I am too mean, you need to know that I am an ass. Please don’t judge me or do it; I don’t really care ;)."
+    "text": "Important\nIf you find this a joke or I am too mean, you need to know that I am an a@#s. Please don’t judge me or do it; I don’t really care ;)."
   },
   {
     "objectID": "about.html",
@@ -54,5 +54,12 @@
     "title": "About me",
     "section": "Experience",
     "text": "Experience\n\nResearch contract\nFinnish Center of Artificial Intelligence | October 2020.\nStudied the uncertainty of Cross-Validation methods when comparing probabilistic machine learning models. Proposed an algorithm for automatic forecasting with probabilistic time-series models.\nSkills: R, Python, ML, Model Comparison, Data Visualization..\n\n\nAssistant Professor, Statistics Department\nUniversidad Nacional Autonoma de Honduras (UNAH) | October 2017 – October 2020.\nImparted Statistical Inference, Stochastic Processes, and Linear Models classes for the department of Statistics.\nSkills: Julia, STATA, Mathematics, Bayesian Statistics.\n\n\nData analyst\nInstituto Hondureño de Transporte Público | January 2017 – April 2018.\nDesigned statistical models for estimating the public transport demands using simulation and stochastic processes. Adapted dynamic econometric models to analyze Tegucigalpa, Honduras’s public transport system.\nSkills: Simulation, Probability, Mathematical Modeling, Bayesian Statistics.\n\n\nActuarial analyst\nInstituto Hondureño de Seguridad Social | January 2016 – January 2017.\nWrote scripts for data cleaning and summaries for the actuarial evaluation of the total of affiliates in Honduras’ primary pension system. Created big-data modules for the actuarial analysis of the pension system.\nSkills:SQL, Data-cleaning, Big-data, Actuarial Modeling.\n\n\nStatistical Consultant\nInstituto Hondureño de Turismo | January 2015 – January 2016.\nDesigned the Sampling procedure for estimating the Touristic Expenditure in Honduras. I implemented time-series models for analyzing the principal financial indicators related to tourism.\nSkills: SPSS, Excell, forecasting, time-series."
+  },
+  {
+    "objectID": "index.html#asael-an-attempt-of-websiteblog-again",
+    "href": "index.html#asael-an-attempt-of-websiteblog-again",
+    "title": "Asael Alonzo Matamoros",
+    "section": "Asael, an attempt of website/Blog, again?!",
+    "text": "Asael, an attempt of website/Blog, again?!\nWell, yes! One of my major flaws is my English writing, so I am doing this website for three different purposes:\n\nImprove my R, Python, and Julia skills by presenting some time-series analyses using those languages.\nPractice my English writing by saturating everyone, including myself, with this bullsh@#t.\nPresent all those little works and collaborations I do in a compact (bounded and closed) set."
   }
 ]
