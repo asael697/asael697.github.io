@@ -15,7 +15,7 @@ If, for any reason, you still want to know more about my work, please check this
   
   + **Important:** If you are a developer, R fanatic, or statistician, please star my [bayesforecast package](https://github.com/asael697/bayesforecast).
 
-## sael, an attempt of website/Blog, again?! 
+## Asael, an attempt of website/Blog, again?! 
 
 Well, yes! One of my major flaws is my English writing, so I am doing this website for three different purposes:
 
@@ -33,5 +33,5 @@ If you want to know more about it or are having a heavy season and want somebody
 
 ## Important 
  
- If you find this a joke or I am too mean, you need to know that I am an ass. Please don't judge me or do it; I don't really care ;).
+ If you find this a joke or I am too mean, you need to know that I am an a@#s. Please don't judge me or do it; I don't really care ;).
  
