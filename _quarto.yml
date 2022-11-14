@@ -11,6 +11,8 @@ website:
         text: Home
       - href: about.qmd
         text: CV
+      - href: ABR.qmd
+        text: Applied Bayesian Regression
     right:
       - icon: "twitter"        
         href: https://twitter.com/Asael_am
@@ -27,3 +29,8 @@ format:
     css: styles.css
     html-math-method: katex
     toc: true
+    code-copy: true
+    code-fold: true
+    self-contained: true
+    smooth-scroll: true
+    anchor-sections: true
