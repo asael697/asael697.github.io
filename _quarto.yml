@@ -31,6 +31,5 @@ format:
     toc: true
     code-copy: true
     code-fold: true
-    self-contained: true
     smooth-scroll: true
     anchor-sections: true
