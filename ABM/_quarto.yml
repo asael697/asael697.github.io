@@ -33,3 +33,6 @@ format:
     code-fold: true
     smooth-scroll: true
     anchor-sections: true
+    
+editor: visual
+
