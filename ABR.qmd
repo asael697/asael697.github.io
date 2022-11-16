@@ -8,6 +8,14 @@ about:
 
 La segunda parte del curso se impartirá regresión Bayesiana aplicada, el objetivo principal es que el estudiante pueda resolver un problema de regresión con un conjunto de datos reales mediante un ordenador, independiente del enfoque de inferencia a utilizar. 
 
+El material de la clase se encuentra en el repositorio [Applied-Bayesian-Regression](https://github.com/asael697/Appplied-Bayesian-Regression). Este presenta el contenido y cuadernos para la clase de Modelos lineales para la Maestría en Matemática, tercer periodo del año 2021. 
+
+  + [Notebooks](https://github.com/asael697/Appplied-Bayesian-Regression/tree/main/Notebooks): Guarda los cuadernos de la clase en formato `.md`  para que puedan ser visualizados de forma rápida por los alumnos.
+  
+  + [qmd](): Guardas los cuadernos en `quarto` para poder visualizar el archivo `.html` usado en la clase, descargar el archivo, y hacer un render desde la consola u `Rstudio`.
+  
+La clase se imparte los `Lunes, Martes` y `Jueves` a las `17:00` horas (GMT -6), Para acceder al enlace zoom de la clase presione [aquí](https://aalto.zoom.us/j/63860483890).
+
 ## Contenido
 
 El contenido para el resto del curso es:
