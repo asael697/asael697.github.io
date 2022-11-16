@@ -1,0 +1,878 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.1.179">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="Asael Alonzo Matamoros">
+<meta name="dcterms.date" content="2022-11-15">
+
+<title>asael_am - GLMs Gaussianos: Capacidad de Motores de carros</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1.6em;
+  vertical-align: middle;
+}
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+}
+.hanging div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}
+</style>
+
+
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<script src="../../site_libs/quarto-html/quarto.js"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-dark.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../../site_libs/bootstrap/bootstrap-dark.min.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 20,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit"
+  }
+}</script>
+<style>html{ scroll-behavior: smooth; }</style>
+<link href="../../site_libs/tabwid-1.1.0/tabwid.css" rel="stylesheet">
+<link href="../../site_libs/tabwid-1.1.0/scrool.css" rel="stylesheet">
+
+  <script>window.backupDefine = window.define; window.define = undefined;</script><script src="https://cdn.jsdelivr.net/npm/katex@0.15.1/dist/katex.min.js"></script>
+  <script>document.addEventListener("DOMContentLoaded", function () {
+ var mathElements = document.getElementsByClassName("math");
+ var macros = [];
+ for (var i = 0; i < mathElements.length; i++) {
+  var texText = mathElements[i].firstChild;
+  if (mathElements[i].tagName == "SPAN") {
+   katex.render(texText.data, mathElements[i], {
+    displayMode: mathElements[i].classList.contains('display'),
+    throwOnError: false,
+    macros: macros,
+    fleqn: false
+   });
+}}});
+  </script>
+  <script>window.define = window.backupDefine; window.backupDefine = undefined;</script><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.15.1/dist/katex.min.css">
+
+<link rel="stylesheet" href="../../styles.css">
+</head>
+
+<body class="nav-fixed">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg navbar-dark ">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container">
+    <a class="navbar-brand" href="../../index.html">
+    <span class="navbar-title">asael_am</span>
+    </a>
+  </div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../../index.html">Home</a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../about.qmd">CV</a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../ABM/index.qmd">Applied Bayesian Modeling</a>
+  </li>  
+</ul>
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://twitter.com/Asael_am"><i class="bi bi-twitter" role="img">
+</i> 
+ </a>
+  </li>  
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://github.com/asael697"><i class="bi bi-github" role="img">
+</i> 
+ </a>
+  </li>  
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://www.linkedin.com/in/asael-alonzo-matamoros-8466836a/"><i class="bi bi-linkedin" role="img">
+</i> 
+ </a>
+  </li>  
+</ul>
+              <div class="quarto-toggle-container">
+                  <a href="" class="quarto-color-scheme-toggle nav-link" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
+              </div>
+              <div id="quarto-search" class="" title="Search"></div>
+          </div> <!-- /navcollapse -->
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<header id="title-block-header" class="quarto-title-block default page-columns page-full">
+  <div class="quarto-title-banner page-columns page-full">
+    <div class="quarto-title column-body">
+      <h1 class="title"><em>GLMs Gaussianos</em>: Capacidad de Motores de carros</h1>
+                                <div class="quarto-categories">
+                <div class="quarto-category">Gaussian</div>
+                <div class="quarto-category">code</div>
+                <div class="quarto-category">analysis</div>
+              </div>
+                  </div>
+  </div>
+    
+  
+  <div class="quarto-title-meta">
+
+      <div>
+      <div class="quarto-title-meta-heading">Author</div>
+      <div class="quarto-title-meta-contents">
+               <p>Asael Alonzo Matamoros </p>
+            </div>
+    </div>
+      
+      <div>
+      <div class="quarto-title-meta-heading">Published</div>
+      <div class="quarto-title-meta-contents">
+        <p class="date">November 15, 2022</p>
+      </div>
+    </div>
+      
+    </div>
+    
+  
+  </header><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#verosimilitud" id="toc-verosimilitud" class="nav-link active" data-scroll-target="#verosimilitud">Verosimilitud</a></li>
+  <li><a href="#ajuste-del-modelo" id="toc-ajuste-del-modelo" class="nav-link" data-scroll-target="#ajuste-del-modelo">Ajuste del modelo</a></li>
+  <li><a href="#incertidumbre-de-los-estimadores." id="toc-incertidumbre-de-los-estimadores." class="nav-link" data-scroll-target="#incertidumbre-de-los-estimadores.">Incertidumbre de los estimadores.</a></li>
+  <li><a href="#análisis-de-los-residuos" id="toc-análisis-de-los-residuos" class="nav-link" data-scroll-target="#análisis-de-los-residuos">Análisis de los residuos</a></li>
+  <li><a href="#selección-de-modelos" id="toc-selección-de-modelos" class="nav-link" data-scroll-target="#selección-de-modelos">Selección de modelos</a></li>
+  <li><a href="#validación-cruzada" id="toc-validación-cruzada" class="nav-link" data-scroll-target="#validación-cruzada">Validación cruzada</a></li>
+  <li><a href="#referencias" id="toc-referencias" class="nav-link" data-scroll-target="#referencias">Referencias</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content quarto-banner-title-block" id="quarto-document-content">
+
+
+
+
+<p>Este post presenta un análisis la base <code>mtcars</code> usando un modelo lineal múltiple con verosimilitud Gaussiana.</p>
+<p>La base de datos <code>mtcars</code> contiene el registro de motores de carros mas populares en USA, 1974. los datos contienen 32 registros, con 10 atributos del motor.</p>
+<div class="cell">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(caret)</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(GGally)</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(flextable)</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(bayesplot)</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggfortify)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<p>Se desea predecir la capacidad de consumo de los motores, para eso se evaluaron las siguiente variables.</p>
+<ul>
+<li><p><code>mpg</code>: Millas por Galón. (<strong>Dependiente</strong>)</p></li>
+<li><p><code>hp</code>: Caballos de fuerza.</p></li>
+<li><p><code>carb</code>: número de carburadores.</p></li>
+<li><p><code>wt</code>: peso del motor.</p></li>
+<li><p><code>gears</code>: Número de cambios.</p></li>
+<li><p><code>vs</code>: tipo de motor, <code>recto:1</code> o <code>tipo V:0</code>.</p></li>
+</ul>
+<section id="verosimilitud" class="level2">
+<h2 class="anchored" data-anchor-id="verosimilitud">Verosimilitud</h2>
+<p>Para medir la relación de consumo de los motores utilizaremos un GLM normal tal que:</p>
+<p><span class="math display">mpg_i \sim N(\mu_i,\sigma^2), \quad  g(\mu_i) = \mu_i, \text{ y } \mu_i = \beta X_i.</span></p>
+<p>El siguiente código limpia la base de datos para obtener las variables de interés</p>
+<div class="cell">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>df <span class="ot">=</span> mtcars[,<span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">4</span>,<span class="dv">6</span>,<span class="dv">8</span>,<span class="dv">10</span>,<span class="dv">11</span>)]</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(df)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>'data.frame':   32 obs. of  6 variables:
+ $ mpg : num  21 21 22.8 21.4 18.7 18.1 14.3 24.4 22.8 19.2 ...
+ $ hp  : num  110 110 93 110 175 105 245 62 95 123 ...
+ $ wt  : num  2.62 2.88 2.32 3.21 3.44 ...
+ $ vs  : num  0 0 1 1 0 1 0 1 1 1 ...
+ $ gear: num  4 4 4 3 3 3 3 4 4 4 ...
+ $ carb: num  4 4 1 1 2 1 4 2 2 4 ...</code></pre>
+</div>
+</div>
+<p>Todas las variables son numéricas, pero algunas son totalmente enteras, dificultando el proceso de análisis, se procede a revisar las correlaciones para revisar las interacciones lineales entre variables.</p>
+<div class="cell">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggpairs</span>(df)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output-display">
+<div id="fig-pairs" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure">
+<p><img src="index_files/figure-html/fig-pairs-1.png" class="img-fluid figure-img" width="672"></p>
+<p></p><figcaption class="figure-caption">Figure&nbsp;1: Gráfico de pares. La diagonal principal muestra histogramas densidades de cada una de las variables. La parte superior muestra el coeficiente de correlación entre dos variables, fila y columna. La parte inferior muestra un gráfico de dispersión entre dos variables.</figcaption><p></p>
+</figure>
+</div>
+</div>
+</div>
+<p><a href="#fig-pairs">Figure&nbsp;1</a> muestra colinealidad entre las variables <code>mpg, hp</code> y <code>wt</code>. Por lo tanto, múltiples modelos deben ser considerados. Realizemos un modelo inicial, el considerado el modelo completo que posee todas las variables</p>
+<div class="callout-note callout callout-style-default callout-captioned">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-caption-container flex-fill">
+Colinealidad
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Dos covariables <span class="math inline">X_1</span> y <span class="math inline">X_2</span> se dicen ser <strong>colineales</strong> si las variables son <strong>linealmente dependientes</strong>.</p>
+<p>Recordar que si dos columnas de una matriz son linealmente dependiente, entonces el determinante es cero.</p>
+</div>
+</div>
+</section>
+<section id="ajuste-del-modelo" class="level2">
+<h2 class="anchored" data-anchor-id="ajuste-del-modelo">Ajuste del modelo</h2>
+<p>Ajustamos el modelo completo que consiste en usar todas las variables, y revisamos el ajuste e inferencia de los parámetros.</p>
+<div class="cell">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>m1 <span class="ot">=</span> <span class="fu">lm</span>(mpg<span class="sc">~</span>.,<span class="at">data =</span> df)</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(m1)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+Call:
+lm(formula = mpg ~ ., data = df)
+
+Residuals:
+    Min      1Q  Median      3Q     Max 
+-3.2884 -1.4370 -0.3155  1.1697  5.8246 
+
+Coefficients:
+            Estimate Std. Error t value Pr(&gt;|t|)    
+(Intercept) 27.20311    5.74212   4.737 6.72e-05 ***
+hp          -0.02339    0.01353  -1.728   0.0958 .  
+wt          -2.74663    0.92005  -2.985   0.0061 ** 
+vs           0.94692    1.36929   0.692   0.4954    
+gear         1.78520    1.12762   1.583   0.1255    
+carb        -0.65498    0.57767  -1.134   0.2672    
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+
+Residual standard error: 2.569 on 26 degrees of freedom
+Multiple R-squared:  0.8477,    Adjusted R-squared:  0.8184 
+F-statistic: 28.94 on 5 and 26 DF,  p-value: 7.653e-10</code></pre>
+</div>
+</div>
+<p>Debido a la alta colinealidad entre las variables, pocos parámetros estimados son significativos. Procedemos a eliminar algunas variables del modelo. Eliminamos la variable <code>wt</code> al ser colineal con múltiples variables. Por lo tanto, el modelo inicial <span class="math inline">M_1</span> es:</p>
+<div class="cell">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>m1  <span class="ot">=</span>  <span class="fu">lm</span>(mpg<span class="sc">~</span>vs<span class="sc">+</span>hp<span class="sc">+</span>gear<span class="sc">+</span>carb,<span class="at">data =</span> df)</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(m1)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+Call:
+lm(formula = mpg ~ vs + hp + gear + carb, data = df)
+
+Residuals:
+    Min      1Q  Median      3Q     Max 
+-3.8047 -2.3487 -0.0967  1.9188  6.7859 
+
+Coefficients:
+            Estimate Std. Error t value Pr(&gt;|t|)    
+(Intercept) 13.03756    3.67694   3.546  0.00145 ** 
+vs           0.84671    1.55657   0.544  0.59093    
+hp          -0.03449    0.01480  -2.331  0.02747 *  
+gear         4.20129    0.89285   4.705 6.72e-05 ***
+carb        -1.33338    0.60391  -2.208  0.03593 *  
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+
+Residual standard error: 2.921 on 27 degrees of freedom
+Multiple R-squared:  0.7955,    Adjusted R-squared:  0.7652 
+F-statistic: 26.25 on 4 and 27 DF,  p-value: 5.825e-09</code></pre>
+</div>
+</div>
+</section>
+<section id="incertidumbre-de-los-estimadores." class="level2">
+<h2 class="anchored" data-anchor-id="incertidumbre-de-los-estimadores.">Incertidumbre de los estimadores.</h2>
+<p>Pese que la función <code>lm</code> de <code>R</code> realiza un análisis de incertidumbre al presentar una <em>Prueba-t</em> de significacia para cada parámetro <span class="math inline">\beta_i</span>, no presenta los intervalos de confianza. Estos serán estimados con <strong>Bootstrap</strong>. La siguiente función obtiene una muestra Bootstrap de los parámetros desconocidos <span class="math inline">\beta</span>.</p>
+<div class="cell">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>lm_boots <span class="ot">=</span> <span class="cf">function</span>(y,x,<span class="at">B =</span> <span class="dv">1000</span>){</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>  n <span class="ot">=</span> <span class="fu">length</span>(y)</span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>  est <span class="ot">=</span> <span class="cn">NULL</span></span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>  <span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span>B) {</span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>    si <span class="ot">=</span> <span class="fu">sample</span>(<span class="at">x =</span> <span class="dv">1</span><span class="sc">:</span>n,<span class="at">size =</span> n,<span class="at">replace =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>    mli <span class="ot">=</span> <span class="fu">lm</span>(y[si]<span class="sc">~</span>x[si,] )</span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a>    ci <span class="ot">=</span> <span class="fu">as.array</span>(mli<span class="sc">$</span>coefficients)</span>
+<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a>    est <span class="ot">=</span> <span class="fu">rbind</span>(est,ci)</span>
+<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Estética</span></span>
+<span id="cb9-11"><a href="#cb9-11" aria-hidden="true" tabindex="-1"></a>  cn <span class="ot">=</span> <span class="fu">colnames</span>(x)</span>
+<span id="cb9-12"><a href="#cb9-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">colnames</span>(est) <span class="ot">=</span> <span class="fu">c</span>(<span class="st">"intercepto"</span>,cn)</span>
+<span id="cb9-13"><a href="#cb9-13" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb9-14"><a href="#cb9-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(est)</span>
+<span id="cb9-15"><a href="#cb9-15" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<p>Obtenemos una muestra Bootstrap para los estimadores <span class="math inline">\hat \beta</span> de tamaño <span class="math inline">B=5,000</span> repeticiones</p>
+<div class="cell">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>btp <span class="ot">=</span> <span class="fu">lm_boots</span>(<span class="at">y =</span> df<span class="sc">$</span>mpg,<span class="at">x =</span> <span class="fu">as.matrix</span>(df[,<span class="sc">-</span><span class="dv">1</span>]),<span class="at">B =</span> <span class="dv">5000</span>)</span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a><span class="fu">bayesplot_theme_set</span>(<span class="fu">theme_grey</span>())</span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a><span class="fu">mcmc_dens</span>(btp)<span class="sc">+</span><span class="fu">labs</span>(<span class="at">title=</span><span class="st">"Distribución muestral de los estimadores"</span>,</span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>                    <span class="at">subtitle =</span><span class="st">"Bootstrap B = 5,000 iteraciones"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output-display">
+<div id="fig-btp" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure">
+<p><img src="index_files/figure-html/fig-btp-1.png" class="img-fluid figure-img" width="672"></p>
+<p></p><figcaption class="figure-caption">Figure&nbsp;2: Gráfico de densidades. Cada densidad representa la distribución muestral aproximada para cada uno de los estimadores usando un Bootstrap de B=5,000 iteraciones.</figcaption><p></p>
+</figure>
+</div>
+</div>
+</div>
+<p>Los intervalos de confianza al 95% son:</p>
+<div class="cell">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>x <span class="ot">=</span> <span class="fu">apply</span>(btp,<span class="at">MARGIN =</span> <span class="dv">2</span>, <span class="at">FUN =</span> quantile, <span class="at">probs =</span> <span class="fu">c</span>(<span class="fl">0.025</span>,<span class="fl">0.5</span>,<span class="fl">0.975</span>)) </span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Estética</span></span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>x <span class="ot">=</span> <span class="fu">data.frame</span>( <span class="fu">t</span>(x) )</span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>x<span class="sc">$</span>pars <span class="ot">=</span> <span class="fu">c</span>(<span class="st">"intercepto"</span>,<span class="st">"hp"</span>,<span class="st">"wt"</span>,<span class="st">"vs"</span>,<span class="st">"gear"</span>,<span class="st">"carb"</span>)</span>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a><span class="fu">colnames</span>(x) <span class="ot">=</span> <span class="fu">c</span>(<span class="st">"q2.5%"</span>,<span class="st">"Median"</span>,<span class="st">"q97.5%"</span>,<span class="st">"parámetros"</span>)</span>
+<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a>ft <span class="ot">=</span> <span class="fu">flextable</span>(x[<span class="fu">c</span>(<span class="dv">4</span>,<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>)])</span>
+<span id="cb11-9"><a href="#cb11-9" aria-hidden="true" tabindex="-1"></a><span class="fu">autofit</span>(ft)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output-display">
+<div id="tbl-btp" class="anchored">
+
+<div class="tabwid"><style>.cl-9902491a{}.cl-98fc2864{font-family:'Helvetica';font-size:11pt;font-weight:normal;font-style:normal;text-decoration:none;color:rgba(0, 0, 0, 1.00);background-color:transparent;}.cl-98feb49e{margin:0;text-align:left;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);padding-bottom:5pt;padding-top:5pt;padding-left:5pt;padding-right:5pt;line-height: 1;background-color:transparent;}.cl-98feb4a8{margin:0;text-align:right;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);padding-bottom:5pt;padding-top:5pt;padding-left:5pt;padding-right:5pt;line-height: 1;background-color:transparent;}.cl-98fec498{width:1.058in;background-color:transparent;vertical-align: middle;border-bottom: 2pt solid rgba(102, 102, 102, 1.00);border-top: 2pt solid rgba(102, 102, 102, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-98fec499{width:1.177in;background-color:transparent;vertical-align: middle;border-bottom: 2pt solid rgba(102, 102, 102, 1.00);border-top: 2pt solid rgba(102, 102, 102, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-98fec4a2{width:1.262in;background-color:transparent;vertical-align: middle;border-bottom: 2pt solid rgba(102, 102, 102, 1.00);border-top: 2pt solid rgba(102, 102, 102, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-98fec4ac{width:1.058in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-98fec4b6{width:1.177in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-98fec4b7{width:1.262in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-98fec4c0{width:1.058in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-98fec4c1{width:1.177in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-98fec4c2{width:1.262in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-98fec4ca{width:1.058in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-98fec4cb{width:1.177in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-98fec4d4{width:1.262in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-98fec4d5{width:1.058in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-98fec4de{width:1.177in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-98fec4e8{width:1.262in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-98fec4e9{width:1.058in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-98fec4f2{width:1.177in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-98fec4f3{width:1.262in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-98fec4fc{width:1.058in;background-color:transparent;vertical-align: middle;border-bottom: 2pt solid rgba(102, 102, 102, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-98fec4fd{width:1.177in;background-color:transparent;vertical-align: middle;border-bottom: 2pt solid rgba(102, 102, 102, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-98fec506{width:1.262in;background-color:transparent;vertical-align: middle;border-bottom: 2pt solid rgba(102, 102, 102, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}</style><table class="cl-9902491a"><caption>Table&nbsp;1:  Intervalos de confianza al 95%, obtenidos a partir de una muestra bootstrap de B = 5,000 iteraciones </caption><thead><tr style="overflow-wrap:break-word;"><td class="cl-98fec498"><p class="cl-98feb49e"><span class="cl-98fc2864">parámetros</span></p></td><td class="cl-98fec499"><p class="cl-98feb4a8"><span class="cl-98fc2864">q2.5%</span></p></td><td class="cl-98fec499"><p class="cl-98feb4a8"><span class="cl-98fc2864">Median</span></p></td><td class="cl-98fec4a2"><p class="cl-98feb4a8"><span class="cl-98fc2864">q97.5%</span></p></td></tr></thead><tbody><tr style="overflow-wrap:break-word;"><td class="cl-98fec4ac"><p class="cl-98feb49e"><span class="cl-98fc2864">intercepto</span></p></td><td class="cl-98fec4b6"><p class="cl-98feb4a8"><span class="cl-98fc2864">12.12143792</span></p></td><td class="cl-98fec4b6"><p class="cl-98feb4a8"><span class="cl-98fc2864">26.97263638</span></p></td><td class="cl-98fec4b7"><p class="cl-98feb4a8"><span class="cl-98fc2864">37.698552239</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-98fec4c0"><p class="cl-98feb49e"><span class="cl-98fc2864">hp</span></p></td><td class="cl-98fec4c1"><p class="cl-98feb4a8"><span class="cl-98fc2864">-0.04762098</span></p></td><td class="cl-98fec4c1"><p class="cl-98feb4a8"><span class="cl-98fc2864">-0.02380259</span></p></td><td class="cl-98fec4c2"><p class="cl-98feb4a8"><span class="cl-98fc2864">0.002979947</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-98fec4ca"><p class="cl-98feb49e"><span class="cl-98fc2864">wt</span></p></td><td class="cl-98fec4cb"><p class="cl-98feb4a8"><span class="cl-98fc2864">-4.70923222</span></p></td><td class="cl-98fec4cb"><p class="cl-98feb4a8"><span class="cl-98fc2864">-2.64359169</span></p></td><td class="cl-98fec4d4"><p class="cl-98feb4a8"><span class="cl-98fc2864">-0.954013196</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-98fec4d5"><p class="cl-98feb49e"><span class="cl-98fc2864">vs</span></p></td><td class="cl-98fec4de"><p class="cl-98feb4a8"><span class="cl-98fc2864">-1.99495764</span></p></td><td class="cl-98fec4de"><p class="cl-98feb4a8"><span class="cl-98fc2864">0.75529046</span></p></td><td class="cl-98fec4e8"><p class="cl-98feb4a8"><span class="cl-98fc2864">3.099198651</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-98fec4e9"><p class="cl-98feb49e"><span class="cl-98fc2864">gear</span></p></td><td class="cl-98fec4f2"><p class="cl-98feb4a8"><span class="cl-98fc2864">0.22253963</span></p></td><td class="cl-98fec4f2"><p class="cl-98feb4a8"><span class="cl-98fc2864">1.85880109</span></p></td><td class="cl-98fec4f3"><p class="cl-98feb4a8"><span class="cl-98fc2864">5.271241021</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-98fec4fc"><p class="cl-98feb49e"><span class="cl-98fc2864">carb</span></p></td><td class="cl-98fec4fd"><p class="cl-98feb4a8"><span class="cl-98fc2864">-2.28750766</span></p></td><td class="cl-98fec4fd"><p class="cl-98feb4a8"><span class="cl-98fc2864">-0.74194868</span></p></td><td class="cl-98fec506"><p class="cl-98feb4a8"><span class="cl-98fc2864">0.310962744</span></p></td></tr></tbody></table></div>
+</div>
+</div>
+</div>
+<p>Los intervalos de confianza revelan mayor información a lo obtenido por la prueba-t, parámetros como <code>hp</code>, y <code>carb</code> que son significativos en la prueba, no lo son mediante los intervalos. Esto indica la posibilidad de un modelo mucho mas reducido.</p>
+</section>
+<section id="análisis-de-los-residuos" class="level2">
+<h2 class="anchored" data-anchor-id="análisis-de-los-residuos">Análisis de los residuos</h2>
+<p>Una vez evaluadas las estimaciones del modelo, es necesario revisar los residuos del mismo para corroborar supuestos, la siguiente linea de código presenta un resumen descriptivo de los residuos del modelo inicial <span class="math inline">M_1</span>, en su mayoría parecen estar centrados en cero.</p>
+<div class="cell">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(m1<span class="sc">$</span>residuals)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>    Min.  1st Qu.   Median     Mean  3rd Qu.     Max. 
+-3.80470 -2.34875 -0.09674  0.00000  1.91880  6.78592 </code></pre>
+</div>
+</div>
+<p><a href="#fig-res1">Figure&nbsp;3</a> presenta una visualización típica para el diagnostico de los residuos, ninguna figura debe presentar un comportamiento polinómico a excepción del gráfico de quantiles (<em>derecha superior</em>), que debe seguir el comportamiento de una función lineal creciente.</p>
+<div class="cell">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="fu">autoplot</span>(m1)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output-display">
+<div id="fig-res1" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure">
+<p><img src="index_files/figure-html/fig-res1-1.png" class="img-fluid figure-img" width="672"></p>
+<p></p><figcaption class="figure-caption">Figure&nbsp;3: Gráfico diagnóstico de los residuos, estos cuatro gráficos evaluan el ajuste y supuestos del modelo, si algún comportamiento polinómico es persistente, entonces los supuestos del modelo no se satisfacen.</figcaption><p></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="selección-de-modelos" class="level2">
+<h2 class="anchored" data-anchor-id="selección-de-modelos">Selección de modelos</h2>
+<p>Adicional al modelo <span class="math inline">M_1</span>, ajustamos dos modelos mas:</p>
+<p><span class="math display">M_2: \quad mpg \sim N(hp+gear+carb,\sigma^2),</span> <span class="math display">M_3: \quad mpg \sim N(wt+gear+carb,\sigma^2).</span></p>
+<div class="cell">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>m2 <span class="ot">=</span> <span class="fu">lm</span>(mpg<span class="sc">~</span>hp<span class="sc">+</span>gear<span class="sc">+</span>carb,<span class="at">data =</span> df)</span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>m3 <span class="ot">=</span> <span class="fu">lm</span>(mpg<span class="sc">~</span>wt<span class="sc">+</span>gear<span class="sc">+</span>carb,<span class="at">data =</span> df)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<p>El siguiente código calcula el <span class="math inline">RMSE</span> de un modelo linea en el conjunto de entrenamiento.</p>
+<div class="cell">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>rmse <span class="ot">=</span> <span class="cf">function</span>(m){</span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>  mse <span class="ot">=</span> <span class="fu">sum</span>(m<span class="sc">$</span>residuals<span class="sc">^</span><span class="dv">2</span>)<span class="sc">/</span><span class="fu">length</span>(m<span class="sc">$</span>residuals)</span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(<span class="fu">sqrt</span>(mse))</span>
+<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<div class="cell">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>x <span class="ot">=</span> <span class="fu">matrix</span>(<span class="dv">0</span>,<span class="at">nrow =</span> <span class="dv">4</span>,<span class="at">ncol =</span> <span class="dv">3</span>)</span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>x[<span class="dv">1</span>,] <span class="ot">=</span> <span class="fu">c</span>(<span class="fu">logLik</span>(m1),<span class="fu">logLik</span>(m2),<span class="fu">logLik</span>(m3))</span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>x[<span class="dv">2</span>,] <span class="ot">=</span> <span class="fu">c</span>(<span class="fu">AIC</span>(m1),<span class="fu">AIC</span>(m2),<span class="fu">AIC</span>(m3))</span>
+<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a>x[<span class="dv">3</span>,] <span class="ot">=</span> <span class="fu">c</span>(<span class="fu">BIC</span>(m1),<span class="fu">BIC</span>(m2),<span class="fu">BIC</span>(m3))</span>
+<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a>x[<span class="dv">4</span>,] <span class="ot">=</span> <span class="fu">c</span>(<span class="fu">rmse</span>(m1),<span class="fu">rmse</span>(m2),<span class="fu">rmse</span>(m3))</span>
+<span id="cb17-6"><a href="#cb17-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-7"><a href="#cb17-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Estética</span></span>
+<span id="cb17-8"><a href="#cb17-8" aria-hidden="true" tabindex="-1"></a>x <span class="ot">=</span> <span class="fu">data.frame</span>(x)</span>
+<span id="cb17-9"><a href="#cb17-9" aria-hidden="true" tabindex="-1"></a>x<span class="sc">$</span>pars <span class="ot">=</span>  <span class="fu">c</span>(<span class="st">"logLik"</span>,<span class="st">"AIC"</span>,<span class="st">"BIC"</span>,<span class="st">"RMSE"</span>)</span>
+<span id="cb17-10"><a href="#cb17-10" aria-hidden="true" tabindex="-1"></a><span class="fu">colnames</span>(x)  <span class="ot">=</span> <span class="fu">c</span>(<span class="st">"Modelo 1"</span>,<span class="st">"Modelo 2"</span>,<span class="st">"Modelo 3"</span>,<span class="st">"Criterio"</span>)</span>
+<span id="cb17-11"><a href="#cb17-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-12"><a href="#cb17-12" aria-hidden="true" tabindex="-1"></a>ft <span class="ot">=</span> <span class="fu">flextable</span>(x[<span class="fu">c</span>(<span class="dv">4</span>,<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>)])</span>
+<span id="cb17-13"><a href="#cb17-13" aria-hidden="true" tabindex="-1"></a><span class="fu">autofit</span>(ft)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output-display">
+<div id="tbl-criteria" class="anchored">
+
+<div class="tabwid"><style>.cl-99d3925e{}.cl-99ce9326{font-family:'Helvetica';font-size:11pt;font-weight:normal;font-style:normal;text-decoration:none;color:rgba(0, 0, 0, 1.00);background-color:transparent;}.cl-99d0b066{margin:0;text-align:left;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);padding-bottom:5pt;padding-top:5pt;padding-left:5pt;padding-right:5pt;line-height: 1;background-color:transparent;}.cl-99d0b07a{margin:0;text-align:right;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);padding-bottom:5pt;padding-top:5pt;padding-left:5pt;padding-right:5pt;line-height: 1;background-color:transparent;}.cl-99d0bed0{width:0.778in;background-color:transparent;vertical-align: middle;border-bottom: 2pt solid rgba(102, 102, 102, 1.00);border-top: 2pt solid rgba(102, 102, 102, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-99d0beda{width:1.092in;background-color:transparent;vertical-align: middle;border-bottom: 2pt solid rgba(102, 102, 102, 1.00);border-top: 2pt solid rgba(102, 102, 102, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-99d0bedb{width:0.778in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-99d0bee4{width:1.092in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-99d0bee5{width:0.778in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-99d0beee{width:1.092in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-99d0beef{width:0.778in;background-color:transparent;vertical-align: middle;border-bottom: 2pt solid rgba(102, 102, 102, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-99d0bef8{width:1.092in;background-color:transparent;vertical-align: middle;border-bottom: 2pt solid rgba(102, 102, 102, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}</style><table class="cl-99d3925e"><caption>Table&nbsp;2:  Criterios de información de los modelos. Se selecciona el modelo con menores criterios. </caption><thead><tr style="overflow-wrap:break-word;"><td class="cl-99d0bed0"><p class="cl-99d0b066"><span class="cl-99ce9326">Criterio</span></p></td><td class="cl-99d0beda"><p class="cl-99d0b07a"><span class="cl-99ce9326">Modelo 1</span></p></td><td class="cl-99d0beda"><p class="cl-99d0b07a"><span class="cl-99ce9326">Modelo 2</span></p></td><td class="cl-99d0beda"><p class="cl-99d0b07a"><span class="cl-99ce9326">Modelo 3</span></p></td></tr></thead><tbody><tr style="overflow-wrap:break-word;"><td class="cl-99d0bedb"><p class="cl-99d0b066"><span class="cl-99ce9326">logLik</span></p></td><td class="cl-99d0bee4"><p class="cl-99d0b07a"><span class="cl-99ce9326">-76.986353</span></p></td><td class="cl-99d0bee4"><p class="cl-99d0b07a"><span class="cl-99ce9326">-77.160742</span></p></td><td class="cl-99d0bee4"><p class="cl-99d0b07a"><span class="cl-99ce9326">-75.196419</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-99d0bee5"><p class="cl-99d0b066"><span class="cl-99ce9326">AIC</span></p></td><td class="cl-99d0beee"><p class="cl-99d0b07a"><span class="cl-99ce9326">165.972706</span></p></td><td class="cl-99d0beee"><p class="cl-99d0b07a"><span class="cl-99ce9326">164.321484</span></p></td><td class="cl-99d0beee"><p class="cl-99d0b07a"><span class="cl-99ce9326">160.392838</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-99d0bee5"><p class="cl-99d0b066"><span class="cl-99ce9326">BIC</span></p></td><td class="cl-99d0beee"><p class="cl-99d0b07a"><span class="cl-99ce9326">174.767122</span></p></td><td class="cl-99d0beee"><p class="cl-99d0b07a"><span class="cl-99ce9326">171.650163</span></p></td><td class="cl-99d0beee"><p class="cl-99d0b07a"><span class="cl-99ce9326">167.721517</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-99d0beef"><p class="cl-99d0b066"><span class="cl-99ce9326">RMSE</span></p></td><td class="cl-99d0bef8"><p class="cl-99d0b07a"><span class="cl-99ce9326">2.682864</span></p></td><td class="cl-99d0bef8"><p class="cl-99d0b07a"><span class="cl-99ce9326">2.697525</span></p></td><td class="cl-99d0bef8"><p class="cl-99d0b07a"><span class="cl-99ce9326">2.536917</span></p></td></tr></tbody></table></div>
+</div>
+</div>
+</div>
+<p><a href="#tbl-criteria">Table&nbsp;2</a> muestra la tabla de criterios de información para el conjunto de datos <code>mtcars</code> para sorpresa del lector el mejor modelo es el alternativo <span class="math inline">M_3</span> que usa la variable colineal <code>wt</code> en vez de <code>hp</code>.</p>
+</section>
+<section id="validación-cruzada" class="level2">
+<h2 class="anchored" data-anchor-id="validación-cruzada">Validación cruzada</h2>
+<p>El siguiente código presenta una función para realizar <strong>k-fold-CV</strong> para cualquier valor de <span class="math inline">k</span>. En caso de querer añadir otros modelos o criterios, la función deberá ser modificada.</p>
+<div class="cell">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>kfold <span class="ot">=</span> <span class="cf">function</span>(df,k){</span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Generar la particion</span></span>
+<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a>  kfld <span class="ot">=</span> <span class="fu">createFolds</span>(df[,<span class="dv">1</span>],<span class="at">k =</span> k)</span>
+<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a>  mat <span class="ot">=</span> <span class="cn">NULL</span></span>
+<span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb18-6"><a href="#cb18-6" aria-hidden="true" tabindex="-1"></a>  <span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span>k) {</span>
+<span id="cb18-7"><a href="#cb18-7" aria-hidden="true" tabindex="-1"></a>    <span class="co"># separar los datos en conjuntos de prueba y entrenamiento</span></span>
+<span id="cb18-8"><a href="#cb18-8" aria-hidden="true" tabindex="-1"></a>    dfE<span class="ot">=</span> df[<span class="sc">-</span>kfld[[i]],]</span>
+<span id="cb18-9"><a href="#cb18-9" aria-hidden="true" tabindex="-1"></a>    dfP <span class="ot">=</span> df[kfld[[i]],]</span>
+<span id="cb18-10"><a href="#cb18-10" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Ajustar los modelos</span></span>
+<span id="cb18-11"><a href="#cb18-11" aria-hidden="true" tabindex="-1"></a>    m1 <span class="ot">=</span> <span class="fu">lm</span>(mpg<span class="sc">~</span>vs<span class="sc">+</span>hp<span class="sc">+</span>gear<span class="sc">+</span>carb,<span class="at">data =</span> dfE)</span>
+<span id="cb18-12"><a href="#cb18-12" aria-hidden="true" tabindex="-1"></a>    m2 <span class="ot">=</span> <span class="fu">lm</span>(mpg<span class="sc">~</span>hp<span class="sc">+</span>gear<span class="sc">+</span>carb,<span class="at">data =</span> dfE)</span>
+<span id="cb18-13"><a href="#cb18-13" aria-hidden="true" tabindex="-1"></a>    m3 <span class="ot">=</span> <span class="fu">lm</span>(mpg<span class="sc">~</span>wt<span class="sc">+</span>gear<span class="sc">+</span>carb,<span class="at">data =</span> dfE)</span>
+<span id="cb18-14"><a href="#cb18-14" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb18-15"><a href="#cb18-15" aria-hidden="true" tabindex="-1"></a>    p1 <span class="ot">=</span> <span class="fu">predict</span>(m1,dfP)</span>
+<span id="cb18-16"><a href="#cb18-16" aria-hidden="true" tabindex="-1"></a>    p2 <span class="ot">=</span> <span class="fu">predict</span>(m2,dfP)</span>
+<span id="cb18-17"><a href="#cb18-17" aria-hidden="true" tabindex="-1"></a>    p3 <span class="ot">=</span> <span class="fu">predict</span>(m3,dfP)</span>
+<span id="cb18-18"><a href="#cb18-18" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Calcular AIC y RMSE</span></span>
+<span id="cb18-19"><a href="#cb18-19" aria-hidden="true" tabindex="-1"></a>    aic <span class="ot">=</span> <span class="fu">c</span>(</span>
+<span id="cb18-20"><a href="#cb18-20" aria-hidden="true" tabindex="-1"></a>            <span class="fu">AIC</span>(m1),</span>
+<span id="cb18-21"><a href="#cb18-21" aria-hidden="true" tabindex="-1"></a>            <span class="fu">AIC</span>(m2),</span>
+<span id="cb18-22"><a href="#cb18-22" aria-hidden="true" tabindex="-1"></a>            <span class="fu">AIC</span>(m3)</span>
+<span id="cb18-23"><a href="#cb18-23" aria-hidden="true" tabindex="-1"></a>            )</span>
+<span id="cb18-24"><a href="#cb18-24" aria-hidden="true" tabindex="-1"></a>    rmse <span class="ot">=</span> <span class="fu">c</span>(</span>
+<span id="cb18-25"><a href="#cb18-25" aria-hidden="true" tabindex="-1"></a>             <span class="fu">RMSE</span>(<span class="at">pred =</span>  p1,<span class="at">obs =</span> dfP[,<span class="dv">1</span>]),</span>
+<span id="cb18-26"><a href="#cb18-26" aria-hidden="true" tabindex="-1"></a>             <span class="fu">RMSE</span>(<span class="at">pred =</span>  p2,<span class="at">obs =</span> dfP[,<span class="dv">1</span>]),</span>
+<span id="cb18-27"><a href="#cb18-27" aria-hidden="true" tabindex="-1"></a>             <span class="fu">RMSE</span>(<span class="at">pred =</span>  p3,<span class="at">obs =</span> dfP[,<span class="dv">1</span>])</span>
+<span id="cb18-28"><a href="#cb18-28" aria-hidden="true" tabindex="-1"></a>             )</span>
+<span id="cb18-29"><a href="#cb18-29" aria-hidden="true" tabindex="-1"></a>    mae <span class="ot">=</span> <span class="fu">c</span>(</span>
+<span id="cb18-30"><a href="#cb18-30" aria-hidden="true" tabindex="-1"></a>            <span class="fu">MAE</span>(<span class="at">pred =</span>  p1,<span class="at">obs =</span> dfP[,<span class="dv">1</span>]),</span>
+<span id="cb18-31"><a href="#cb18-31" aria-hidden="true" tabindex="-1"></a>            <span class="fu">MAE</span>(<span class="at">pred =</span>  p2,<span class="at">obs =</span> dfP[,<span class="dv">1</span>]),</span>
+<span id="cb18-32"><a href="#cb18-32" aria-hidden="true" tabindex="-1"></a>            <span class="fu">MAE</span>(<span class="at">pred =</span>  p3,<span class="at">obs =</span> dfP[,<span class="dv">1</span>])</span>
+<span id="cb18-33"><a href="#cb18-33" aria-hidden="true" tabindex="-1"></a>            )</span>
+<span id="cb18-34"><a href="#cb18-34" aria-hidden="true" tabindex="-1"></a>    mape <span class="ot">=</span> <span class="fu">c</span>(</span>
+<span id="cb18-35"><a href="#cb18-35" aria-hidden="true" tabindex="-1"></a>              <span class="fu">mean</span>(<span class="fu">abs</span>((p1<span class="sc">-</span>dfP[,<span class="dv">1</span>])<span class="sc">/</span>dfP[,<span class="dv">1</span>])),</span>
+<span id="cb18-36"><a href="#cb18-36" aria-hidden="true" tabindex="-1"></a>              <span class="fu">mean</span>(<span class="fu">abs</span>((p2<span class="sc">-</span>dfP[,<span class="dv">1</span>])<span class="sc">/</span>dfP[,<span class="dv">1</span>])),</span>
+<span id="cb18-37"><a href="#cb18-37" aria-hidden="true" tabindex="-1"></a>              <span class="fu">mean</span>(<span class="fu">abs</span>((p3<span class="sc">-</span>dfP[,<span class="dv">1</span>])<span class="sc">/</span>dfP[,<span class="dv">1</span>]))</span>
+<span id="cb18-38"><a href="#cb18-38" aria-hidden="true" tabindex="-1"></a>              )</span>
+<span id="cb18-39"><a href="#cb18-39" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Unir los datos</span></span>
+<span id="cb18-40"><a href="#cb18-40" aria-hidden="true" tabindex="-1"></a>    mat <span class="ot">=</span> <span class="fu">rbind</span>(mat,<span class="fu">c</span>(aic,rmse,mae,mape)) </span>
+<span id="cb18-41"><a href="#cb18-41" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb18-42"><a href="#cb18-42" aria-hidden="true" tabindex="-1"></a>  <span class="fu">colnames</span>(mat) <span class="ot">=</span> <span class="fu">c</span>(<span class="st">"AIC1"</span>,<span class="st">"AIC2"</span>,<span class="st">"AIC3"</span>,<span class="st">"RMSE1"</span>,<span class="st">"RMSE2"</span>,<span class="st">"RMSE3"</span>,<span class="st">"MAE1"</span>,<span class="st">"MAE2"</span>,</span>
+<span id="cb18-43"><a href="#cb18-43" aria-hidden="true" tabindex="-1"></a>                    <span class="st">"MAE3"</span>,<span class="st">"MAPE1"</span>,<span class="st">"MAPE2"</span>,<span class="st">"MAPE3"</span>)</span>
+<span id="cb18-44"><a href="#cb18-44" aria-hidden="true" tabindex="-1"></a>  <span class="fu">row.names</span>(mat) <span class="ot">=</span> <span class="cn">NULL</span></span>
+<span id="cb18-45"><a href="#cb18-45" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(mat)</span>
+<span id="cb18-46"><a href="#cb18-46" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<p><a href="#tbl-cv">Table&nbsp;3</a> presenta los resultados obtenidos al realizar 5-fold-cv, bajo todos los criterios presentados, el modelo <span class="math inline">M_3</span> presenta las mejores predicciones. Por lo tanto, <span class="math inline">M_3</span> es el modelo con Mayor aprendizaje.</p>
+<div class="cell">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>rst <span class="ot">=</span> <span class="fu">kfold</span>(<span class="at">df =</span> df,<span class="at">k =</span> <span class="dv">5</span>)</span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>x <span class="ot">=</span> <span class="fu">t</span>(<span class="fu">apply</span>(rst,<span class="at">MARGIN =</span> <span class="dv">2</span>,<span class="at">FUN =</span> <span class="st">"quantile"</span>,<span class="at">probs =</span> <span class="fu">c</span>(<span class="fl">0.025</span>,<span class="fl">0.5</span>,<span class="fl">0.975</span>)))</span>
+<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Estética</span></span>
+<span id="cb19-5"><a href="#cb19-5" aria-hidden="true" tabindex="-1"></a>x <span class="ot">=</span> <span class="fu">data.frame</span>(x)</span>
+<span id="cb19-6"><a href="#cb19-6" aria-hidden="true" tabindex="-1"></a>x<span class="sc">$</span>pars <span class="ot">=</span>  <span class="fu">c</span>(<span class="st">"AIC1"</span>,<span class="st">"AIC2"</span>,<span class="st">"AIC3"</span>,<span class="st">"RMSE1"</span>,<span class="st">"RMSE2"</span>,<span class="st">"RMSE3"</span>,<span class="st">"MAE1"</span>,<span class="st">"MAE2"</span>,</span>
+<span id="cb19-7"><a href="#cb19-7" aria-hidden="true" tabindex="-1"></a>                    <span class="st">"MAE3"</span>,<span class="st">"MAPE1"</span>,<span class="st">"MAPE2"</span>,<span class="st">"MAPE3"</span>)</span>
+<span id="cb19-8"><a href="#cb19-8" aria-hidden="true" tabindex="-1"></a><span class="fu">colnames</span>(x) <span class="ot">=</span> <span class="fu">c</span>(<span class="st">"q2.5%"</span>,<span class="st">"Median"</span>,<span class="st">"q97.5%"</span>,<span class="st">"Criterio"</span>)</span>
+<span id="cb19-9"><a href="#cb19-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-10"><a href="#cb19-10" aria-hidden="true" tabindex="-1"></a>ft <span class="ot">=</span> <span class="fu">flextable</span>(x[<span class="fu">c</span>(<span class="dv">4</span>,<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>)])</span>
+<span id="cb19-11"><a href="#cb19-11" aria-hidden="true" tabindex="-1"></a><span class="fu">autofit</span>(ft)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output-display">
+<div id="tbl-cv" class="anchored">
+
+<div class="tabwid"><style>.cl-99f0c0ea{}.cl-99eb10a0{font-family:'Helvetica';font-size:11pt;font-weight:normal;font-style:normal;text-decoration:none;color:rgba(0, 0, 0, 1.00);background-color:transparent;}.cl-99ed61f2{margin:0;text-align:left;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);padding-bottom:5pt;padding-top:5pt;padding-left:5pt;padding-right:5pt;line-height: 1;background-color:transparent;}.cl-99ed6206{margin:0;text-align:right;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);padding-bottom:5pt;padding-top:5pt;padding-left:5pt;padding-right:5pt;line-height: 1;background-color:transparent;}.cl-99ed6f26{width:0.812in;background-color:transparent;vertical-align: middle;border-bottom: 2pt solid rgba(102, 102, 102, 1.00);border-top: 2pt solid rgba(102, 102, 102, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-99ed6f30{width:1.262in;background-color:transparent;vertical-align: middle;border-bottom: 2pt solid rgba(102, 102, 102, 1.00);border-top: 2pt solid rgba(102, 102, 102, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-99ed6f31{width:1.177in;background-color:transparent;vertical-align: middle;border-bottom: 2pt solid rgba(102, 102, 102, 1.00);border-top: 2pt solid rgba(102, 102, 102, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-99ed6f3a{width:0.812in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-99ed6f44{width:1.262in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-99ed6f45{width:1.177in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-99ed6f46{width:0.812in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-99ed6f4e{width:1.262in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-99ed6f4f{width:1.177in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-99ed6f58{width:0.812in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-99ed6f59{width:1.262in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-99ed6f62{width:1.177in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-99ed6f63{width:0.812in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-99ed6f6c{width:1.262in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-99ed6f6d{width:1.177in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-99ed6f76{width:0.812in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-99ed6f77{width:1.262in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-99ed6f80{width:1.177in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-99ed6f8a{width:0.812in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-99ed6f8b{width:1.262in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-99ed6f94{width:1.177in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-99ed6f95{width:0.812in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-99ed6f9e{width:1.262in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-99ed6f9f{width:1.177in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-99ed6fa8{width:0.812in;background-color:transparent;vertical-align: middle;border-bottom: 2pt solid rgba(102, 102, 102, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-99ed6fa9{width:1.262in;background-color:transparent;vertical-align: middle;border-bottom: 2pt solid rgba(102, 102, 102, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-99ed6faa{width:1.177in;background-color:transparent;vertical-align: middle;border-bottom: 2pt solid rgba(102, 102, 102, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}</style><table class="cl-99f0c0ea"><caption>Table&nbsp;3:  Criterios de información de los modelos. Mediante Validación cruzada. La tabla presenta los criterios AIC, RMSE, MAE y MAPE bajo un 10-fold cv. </caption><thead><tr style="overflow-wrap:break-word;"><td class="cl-99ed6f26"><p class="cl-99ed61f2"><span class="cl-99eb10a0">Criterio</span></p></td><td class="cl-99ed6f30"><p class="cl-99ed6206"><span class="cl-99eb10a0">q2.5%</span></p></td><td class="cl-99ed6f31"><p class="cl-99ed6206"><span class="cl-99eb10a0">Median</span></p></td><td class="cl-99ed6f31"><p class="cl-99ed6206"><span class="cl-99eb10a0">q97.5%</span></p></td></tr></thead><tbody><tr style="overflow-wrap:break-word;"><td class="cl-99ed6f3a"><p class="cl-99ed61f2"><span class="cl-99eb10a0">AIC1</span></p></td><td class="cl-99ed6f44"><p class="cl-99ed6206"><span class="cl-99eb10a0">129.89079860</span></p></td><td class="cl-99ed6f45"><p class="cl-99ed6206"><span class="cl-99eb10a0">133.8847343</span></p></td><td class="cl-99ed6f45"><p class="cl-99ed6206"><span class="cl-99eb10a0">137.8463322</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-99ed6f3a"><p class="cl-99ed61f2"><span class="cl-99eb10a0">AIC2</span></p></td><td class="cl-99ed6f44"><p class="cl-99ed6206"><span class="cl-99eb10a0">128.24651116</span></p></td><td class="cl-99ed6f45"><p class="cl-99ed6206"><span class="cl-99eb10a0">131.9044568</span></p></td><td class="cl-99ed6f45"><p class="cl-99ed6206"><span class="cl-99eb10a0">135.9207489</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-99ed6f46"><p class="cl-99ed61f2"><span class="cl-99eb10a0">AIC3</span></p></td><td class="cl-99ed6f4e"><p class="cl-99ed6206"><span class="cl-99eb10a0">125.28914666</span></p></td><td class="cl-99ed6f4f"><p class="cl-99ed6206"><span class="cl-99eb10a0">129.7135001</span></p></td><td class="cl-99ed6f4f"><p class="cl-99ed6206"><span class="cl-99eb10a0">131.3318842</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-99ed6f58"><p class="cl-99ed61f2"><span class="cl-99eb10a0">RMSE1</span></p></td><td class="cl-99ed6f59"><p class="cl-99ed6206"><span class="cl-99eb10a0">2.33184936</span></p></td><td class="cl-99ed6f62"><p class="cl-99ed6206"><span class="cl-99eb10a0">2.6917461</span></p></td><td class="cl-99ed6f62"><p class="cl-99ed6206"><span class="cl-99eb10a0">4.7960982</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-99ed6f58"><p class="cl-99ed61f2"><span class="cl-99eb10a0">RMSE2</span></p></td><td class="cl-99ed6f59"><p class="cl-99ed6206"><span class="cl-99eb10a0">2.23931913</span></p></td><td class="cl-99ed6f62"><p class="cl-99ed6206"><span class="cl-99eb10a0">2.6033604</span></p></td><td class="cl-99ed6f62"><p class="cl-99ed6206"><span class="cl-99eb10a0">4.8245757</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-99ed6f58"><p class="cl-99ed61f2"><span class="cl-99eb10a0">RMSE3</span></p></td><td class="cl-99ed6f59"><p class="cl-99ed6206"><span class="cl-99eb10a0">1.86567154</span></p></td><td class="cl-99ed6f62"><p class="cl-99ed6206"><span class="cl-99eb10a0">3.2390262</span></p></td><td class="cl-99ed6f62"><p class="cl-99ed6206"><span class="cl-99eb10a0">4.5435248</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-99ed6f63"><p class="cl-99ed61f2"><span class="cl-99eb10a0">MAE1</span></p></td><td class="cl-99ed6f6c"><p class="cl-99ed6206"><span class="cl-99eb10a0">2.06344574</span></p></td><td class="cl-99ed6f6d"><p class="cl-99ed6206"><span class="cl-99eb10a0">2.4000135</span></p></td><td class="cl-99ed6f6d"><p class="cl-99ed6206"><span class="cl-99eb10a0">4.0644025</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-99ed6f76"><p class="cl-99ed61f2"><span class="cl-99eb10a0">MAE2</span></p></td><td class="cl-99ed6f77"><p class="cl-99ed6206"><span class="cl-99eb10a0">1.94399145</span></p></td><td class="cl-99ed6f80"><p class="cl-99ed6206"><span class="cl-99eb10a0">2.1470782</span></p></td><td class="cl-99ed6f80"><p class="cl-99ed6206"><span class="cl-99eb10a0">4.1105977</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-99ed6f8a"><p class="cl-99ed61f2"><span class="cl-99eb10a0">MAE3</span></p></td><td class="cl-99ed6f8b"><p class="cl-99ed6206"><span class="cl-99eb10a0">1.43659615</span></p></td><td class="cl-99ed6f94"><p class="cl-99ed6206"><span class="cl-99eb10a0">2.0766405</span></p></td><td class="cl-99ed6f94"><p class="cl-99ed6206"><span class="cl-99eb10a0">3.6137624</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-99ed6f95"><p class="cl-99ed61f2"><span class="cl-99eb10a0">MAPE1</span></p></td><td class="cl-99ed6f9e"><p class="cl-99ed6206"><span class="cl-99eb10a0">0.10957568</span></p></td><td class="cl-99ed6f9f"><p class="cl-99ed6206"><span class="cl-99eb10a0">0.1329463</span></p></td><td class="cl-99ed6f9f"><p class="cl-99ed6206"><span class="cl-99eb10a0">0.1627171</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-99ed6f76"><p class="cl-99ed61f2"><span class="cl-99eb10a0">MAPE2</span></p></td><td class="cl-99ed6f77"><p class="cl-99ed6206"><span class="cl-99eb10a0">0.10167395</span></p></td><td class="cl-99ed6f80"><p class="cl-99ed6206"><span class="cl-99eb10a0">0.1352277</span></p></td><td class="cl-99ed6f80"><p class="cl-99ed6206"><span class="cl-99eb10a0">0.1646107</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-99ed6fa8"><p class="cl-99ed61f2"><span class="cl-99eb10a0">MAPE3</span></p></td><td class="cl-99ed6fa9"><p class="cl-99ed6206"><span class="cl-99eb10a0">0.06835662</span></p></td><td class="cl-99ed6faa"><p class="cl-99ed6206"><span class="cl-99eb10a0">0.1284953</span></p></td><td class="cl-99ed6faa"><p class="cl-99ed6206"><span class="cl-99eb10a0">0.1629922</span></p></td></tr></tbody></table></div>
+</div>
+</div>
+</div>
+</section>
+<section id="referencias" class="level2">
+
+
+
+
+</section>
+
+<div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" role="doc-bibliography"><h2 class="anchored quarto-appendix-heading">Referencias</h2><div id="refs" class="references csl-bib-body hanging-indent" role="doc-bibliography">
+<div id="ref-Casella" class="csl-entry" role="doc-biblioentry">
+Casella, George, and Roger Berger. 2001. <em>Statistical Inference</em>. Duxbury Resource Center. <a href="http://www.amazon.fr/exec/obidos/ASIN/0534243126/citeulike04-21">http://www.amazon.fr/exec/obidos/ASIN/0534243126/citeulike04-21</a>.
+</div>
+<div id="ref-degroot2012" class="csl-entry" role="doc-biblioentry">
+DeGroot, M. H., and M. J. Schervish. 2012. <em>Probability and Statistics</em>. Addison-Wesley. <a href="https://books.google.es/books?id=4TlEPgAACAAJ">https://books.google.es/books?id=4TlEPgAACAAJ</a>.
+</div>
+<div id="ref-gelman2013" class="csl-entry" role="doc-biblioentry">
+Gelman, A., J. B. Carlin, H. S. Stern, D. B. Dunson, A. Vehtari, and D. B. Rubin. 2013. <em>Bayesian Data Analysis, Third Edition</em>. Chapman &amp; Hall/CRC Texts in Statistical Science. Taylor &amp; Francis. <a href="https://books.google.nl/books?id=ZXL6AQAAQBAJ">https://books.google.nl/books?id=ZXL6AQAAQBAJ</a>.
+</div>
+<div id="ref-Miggon2014" class="csl-entry" role="doc-biblioentry">
+Migon, Helio, Dani Gamerman, and Francisco Louzada. 2014. <em>Statistical Inference. An Integrated Approach</em>. Chapman and Hall CRC Texts in Statistical Science. Chapman; Hall.
+</div>
+<div id="ref-BMLR2021" class="csl-entry" role="doc-biblioentry">
+Roback, paul., and Julie. Legler. 2021. <em><span class="nocase">Beyond Multiple Linear Regression: Applied Generalized Linear Models an Multilevel Models in R</span></em>. <span>Boca Raton</span>.
+</div>
+</div></section></div></main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const disableStylesheet = (stylesheets) => {
+    for (let i=0; i < stylesheets.length; i++) {
+      const stylesheet = stylesheets[i];
+      stylesheet.rel = 'prefetch';
+    }
+  }
+  const enableStylesheet = (stylesheets) => {
+    for (let i=0; i < stylesheets.length; i++) {
+      const stylesheet = stylesheets[i];
+      stylesheet.rel = 'stylesheet';
+    }
+  }
+  const manageTransitions = (selector, allowTransitions) => {
+    const els = window.document.querySelectorAll(selector);
+    for (let i=0; i < els.length; i++) {
+      const el = els[i];
+      if (allowTransitions) {
+        el.classList.remove('notransition');
+      } else {
+        el.classList.add('notransition');
+      }
+    }
+  }
+  const toggleColorMode = (alternate) => {
+    // Switch the stylesheets
+    const alternateStylesheets = window.document.querySelectorAll('link.quarto-color-scheme.quarto-color-alternate');
+    manageTransitions('#quarto-margin-sidebar .nav-link', false);
+    if (alternate) {
+      enableStylesheet(alternateStylesheets);
+      for (const sheetNode of alternateStylesheets) {
+        if (sheetNode.id === "quarto-bootstrap") {
+          toggleBodyColorMode(sheetNode);
+        }
+      }
+    } else {
+      disableStylesheet(alternateStylesheets);
+      toggleBodyColorPrimary();
+    }
+    manageTransitions('#quarto-margin-sidebar .nav-link', true);
+    // Switch the toggles
+    const toggles = window.document.querySelectorAll('.quarto-color-scheme-toggle');
+    for (let i=0; i < toggles.length; i++) {
+      const toggle = toggles[i];
+      if (toggle) {
+        if (alternate) {
+          toggle.classList.add("alternate");     
+        } else {
+          toggle.classList.remove("alternate");
+        }
+      }
+    }
+    // Hack to workaround the fact that safari doesn't
+    // properly recolor the scrollbar when toggling (#1455)
+    if (navigator.userAgent.indexOf('Safari') > 0 && navigator.userAgent.indexOf('Chrome') == -1) {
+      manageTransitions("body", false);
+      window.scrollTo(0, 1);
+      setTimeout(() => {
+        window.scrollTo(0, 0);
+        manageTransitions("body", true);
+      }, 40);  
+    }
+  }
+  const isFileUrl = () => { 
+    return window.location.protocol === 'file:';
+  }
+  const hasAlternateSentinel = () => {  
+    let styleSentinel = getColorSchemeSentinel();
+    if (styleSentinel !== null) {
+      return styleSentinel === "alternate";
+    } else {
+      return false;
+    }
+  }
+  const setStyleSentinel = (alternate) => {
+    const value = alternate ? "alternate" : "default";
+    if (!isFileUrl()) {
+      window.localStorage.setItem("quarto-color-scheme", value);
+    } else {
+      localAlternateSentinel = value;
+    }
+  }
+  const getColorSchemeSentinel = () => {
+    if (!isFileUrl()) {
+      const storageValue = window.localStorage.getItem("quarto-color-scheme");
+      return storageValue != null ? storageValue : localAlternateSentinel;
+    } else {
+      return localAlternateSentinel;
+    }
+  }
+  let localAlternateSentinel = 'default';
+  // Dark / light mode switch
+  window.quartoToggleColorScheme = () => {
+    // Read the current dark / light value 
+    let toAlternate = !hasAlternateSentinel();
+    toggleColorMode(toAlternate);
+    setStyleSentinel(toAlternate);
+  };
+  // Ensure there is a toggle, if there isn't float one in the top right
+  if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
+    const a = window.document.createElement('a');
+    a.classList.add('top-right');
+    a.classList.add('quarto-color-scheme-toggle');
+    a.href = "";
+    a.onclick = function() { try { window.quartoToggleColorScheme(); } catch {} return false; };
+    const i = window.document.createElement("i");
+    i.classList.add('bi');
+    a.appendChild(i);
+    window.document.body.appendChild(a);
+  }
+  // Switch to dark mode if need be
+  if (hasAlternateSentinel()) {
+    toggleColorMode(true);
+  } 
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    target: function(trigger) {
+      return trigger.previousElementSibling;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    setTimeout(function() {
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const cites = ref.parentNode.getAttribute('data-cites').split(' ');
+    tippyHover(ref, function() {
+      var popup = window.document.createElement('div');
+      cites.forEach(function(cite) {
+        var citeDiv = window.document.createElement('div');
+        citeDiv.classList.add('hanging-indent');
+        citeDiv.classList.add('csl-entry');
+        var biblioDiv = window.document.getElementById('ref-' + cite);
+        if (biblioDiv) {
+          citeDiv.innerHTML = biblioDiv.innerHTML;
+        }
+        popup.appendChild(citeDiv);
+      });
+      return popup.innerHTML;
+    });
+  }
+});
+</script>
+</div> <!-- /content -->
+
+
+
+<script src="../../site_libs/quarto-html/zenscroll-min.js"></script>
+</body></html>
