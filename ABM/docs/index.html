@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>asael_am - About me</title>
+<title>asael_am - Applied Bayesian Modeling</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -30,9 +30,12 @@ ul.task-list li input[type="checkbox"] {
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
+<script src="site_libs/quarto-listing/list.min.js"></script>
+<script src="site_libs/quarto-listing/quarto-listing.js"></script>
 <script src="site_libs/quarto-html/quarto.js"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
 <link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
 <link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
 <link href="site_libs/quarto-html/quarto-syntax-highlighting-dark.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
@@ -59,13 +62,58 @@ ul.task-list li input[type="checkbox"] {
     "search-submit-button-title": "Submit"
   }
 }</script>
+<script>
+
+  window.document.addEventListener("DOMContentLoaded", function (_event) {
+    const listingTargetEl = window.document.querySelector('#listing-listing .list');
+    if (!listingTargetEl) {
+      // No listing discovered, do not attach.
+      return; 
+    }
+
+    const options = {
+      valueNames: ['listing-date','listing-title','listing-author','listing-subtitle','listing-image','listing-description','listing-categories',{ data: ['index'] },{ data: ['categories'] },{ data: ['listing-date-sort'] },{ data: ['listing-file-modified-sort'] }],
+      
+      searchColumns: ["listing-date","listing-title","listing-author","listing-subtitle","listing-image","listing-description","listing-categories"],
+    };
+
+    window['quarto-listings'] = window['quarto-listings'] || {};
+    window['quarto-listings']['listing-listing'] = new List('listing-listing', options);
+
+    if (window['quarto-listing-loaded']) {
+      window['quarto-listing-loaded']();
+    }
+  });
+
+  window.addEventListener('hashchange',() => {
+    if (window['quarto-listing-loaded']) {
+      window['quarto-listing-loaded']();
+    }
+  })
+  </script>
 <style>html{ scroll-behavior: smooth; }</style>
 
+  <script>window.backupDefine = window.define; window.define = undefined;</script><script src="https://cdn.jsdelivr.net/npm/katex@0.15.1/dist/katex.min.js"></script>
+  <script>document.addEventListener("DOMContentLoaded", function () {
+ var mathElements = document.getElementsByClassName("math");
+ var macros = [];
+ for (var i = 0; i < mathElements.length; i++) {
+  var texText = mathElements[i].firstChild;
+  if (mathElements[i].tagName == "SPAN") {
+   katex.render(texText.data, mathElements[i], {
+    displayMode: mathElements[i].classList.contains('display'),
+    throwOnError: false,
+    macros: macros,
+    fleqn: false
+   });
+}}});
+  </script>
+  <script>window.define = window.backupDefine; window.backupDefine = undefined;</script><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.15.1/dist/katex.min.css">
 
 <link rel="stylesheet" href="styles.css">
 </head>
 
-<body class="nav-fixed fullcontent">
+<body class="nav-fixed">
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top">
@@ -82,13 +130,13 @@ ul.task-list li input[type="checkbox"] {
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll me-auto">
   <li class="nav-item">
-    <a class="nav-link" href="./index.html">Home</a>
+    <a class="nav-link active" href="./index.html" aria-current="page">Home</a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link active" href="./about.html" aria-current="page">CV</a>
+    <a class="nav-link" href="./about.qmd">CV</a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="./ABM/index.html">Applied Bayesian Modeling</a>
+    <a class="nav-link" href="./ABM/index.qmd">Applied Bayesian Modeling</a>
   </li>  
 </ul>
             <ul class="navbar-nav navbar-nav-scroll ms-auto">
@@ -117,108 +165,167 @@ ul.task-list li input[type="checkbox"] {
     </nav>
 </header>
 <!-- content -->
-<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<header id="title-block-header" class="quarto-title-block default page-columns page-full">
+  <div class="quarto-title-banner page-columns page-full">
+    <div class="quarto-title column-page-left">
+      <h1 class="title">Applied Bayesian Modeling</h1>
+                      </div>
+  </div>
+    
+  
+  <div class="quarto-title-meta">
+
+      
+      
+    </div>
+    
+  
+  </header><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-full page-navbar">
 <!-- sidebar -->
 <!-- margin-sidebar -->
-    
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        
+    <h5 class="quarto-listing-category-title">Categories</h5><div class="quarto-listing-category category-default"><div class="category" data-category="">All <span class="quarto-category-count">(3)</span></div><div class="category" data-category="Baseline">Baseline <span class="quarto-category-count">(1)</span></div><div class="category" data-category="Gaussian">Gaussian <span class="quarto-category-count">(1)</span></div><div class="category" data-category="Regression">Regression <span class="quarto-category-count">(1)</span></div><div class="category" data-category="analysis">analysis <span class="quarto-category-count">(2)</span></div><div class="category" data-category="code">code <span class="quarto-category-count">(2)</span></div><div class="category" data-category="introduction">introduction <span class="quarto-category-count">(1)</span></div><div class="category" data-category="news">news <span class="quarto-category-count">(1)</span></div></div></div>
 <!-- main -->
-<main class="content" id="quarto-document-content">
+<main class="content quarto-banner-title-block column-page-left" id="quarto-document-content">
 
 
 
-<div class="quarto-about-trestles">
-  <div class="about-entity">
-    <img src="images/profile.jpeg" class="about-image
-  round " style="height: 20em; width: 20em;">
-<header id="title-block-header" class="quarto-title-block default">
-<div class="quarto-title">
-<h1 class="title">About me</h1>
+
+
+
+
+
+<div class="quarto-listing quarto-listing-container-default" id="listing-listing">
+<div class="list quarto-listing-default">
+<div class="quarto-post image-right" data-index="0" data-categories="Gaussian,code,analysis" data-listing-date-sort="1668492000000" data-listing-file-modified-sort="1668640612661" data-listing-reading-time-sort="7.095">
+<div class="thumbnail">
+<p><a href="./posts/Gaussian-LM/index.html"> <img src="./posts/Gaussian-LM/image.jpg" class="thumnail-image"> </a></p>
 </div>
-<div class="quarto-title-meta">
-  </div>
-</header>
-  </div>
-  <div class="about-contents"><div id="hero-heading">
-<p>I am a Bayesian Data scientist with a strong background in Bayesian theory, probabilistic programming, time-series analysis, actuarial science, risk modeling, mathematical decision-making, and package developing in <code>R</code>.</p>
-<p><code>Keywords:</code> <em>Forecasting, Bayesian data analyst, Time-series, Probabilistic ML, Mathematics</em>.</p>
-<section id="skills" class="level3">
-<h3 data-anchor-id="skills">Skills</h3>
-<ul>
-<li><p><code>Programming</code>: <em>R, Python, Julia, Octave, Matlab, C++, SQL, Git</em>.</p></li>
-<li><p><code>Statistical tools</code>: <em>SPSS, STATA, R, Excel, Stan, PyMC, Tableau, PowerBI.</em></p></li>
-<li><p><code>Languagues</code>: <em>Spanish (native), English (professional), Dutch (Beginner)</em>.</p></li>
-</ul>
-</section>
-</div></div>
+<div class="body">
+<a href="./posts/Gaussian-LM/index.html">
+<h3 class="no-anchor listing-title">
+GLMs Gaussianos
+</h3>
+<div class="listing-subtitle">
+Capacidad de Motores de carros
 </div>
+</a>
+<div class="listing-categories">
+<div class="listing-category" onclick="window.quartoListingCategory('Gaussian'); return false;">
+Gaussian
+</div>
+<div class="listing-category" onclick="window.quartoListingCategory('code'); return false;">
+code
+</div>
+<div class="listing-category" onclick="window.quartoListingCategory('analysis'); return false;">
+analysis
+</div>
+</div>
+<a href="./posts/Gaussian-LM/index.html">
+<div class="listing-description">
+Este post presenta un análisis la base <code>mtcars</code> usando un modelo lineal múltiple con verosimilitud Gaussiana.
+</div>
+</a>
+</div>
+<div class="metadata">
+<a href="./posts/Gaussian-LM/index.html">
+<div class="listing-date">
+Nov 15, 2022
+</div>
+<div class="listing-author">
+Asael Alonzo Matamoros
+</div>
+</a>
+</div>
+</div>
+<div class="quarto-post image-right" data-index="1" data-categories="Regression,code,analysis" data-listing-date-sort="1668405600000" data-listing-file-modified-sort="1668640269492" data-listing-reading-time-sort="7.015">
+<div class="thumbnail">
+<p><a href="./posts/GLMs/index.html"> <img src="./posts/GLMs/image.jpg" class="thumnail-image"> </a></p>
+</div>
+<div class="body">
+<a href="./posts/GLMs/index.html">
+<h3 class="no-anchor listing-title">
+Modelos Lineales Generalizados Aplicados
+</h3>
+<div class="listing-subtitle">
 
-<section id="research-projects" class="level2">
-<h2 data-anchor-id="research-projects">Research projects</h2>
-<ul>
-<li><p><a href="https://arxiv.org/abs/2208.14824">Bayesian order identification of ARMA models with projection predictive inference</a>. <em>McLatchie Y., Alonzo Matamoros A., Vehtari A. (2022).</em> In submission to AISTATS 2023.</p></li>
-<li><p><a href="https://arxiv.org/abs/2008.10296">Uncertainty in Bayesian Leave-One-Out Cross-Validation Based Model Comparison</a>. <em>Sivula T., Magnusson M., Alonzo Matamoros A., Vehtari A. (2022).</em> Submitted to JMLR.</p></li>
-<li><p><a href="https://bisp12.imati.cnr.it/virtual_poster.php?ref_code=BISP12">The Multiple Degrees of freedom Gaussian Process</a>. <em>Alonzo Matamoros A. (2021).</em> Presented at the Workshop of Bayesian Stochastic Processes.</p></li>
-<li><p><a href="https://cran.r-project.org/web/packages/bayesforecast/index.html">Bayesian time-series modeling with bayesforecast</a>. <em>Alonzo Matamoros A., Vehtari A. (2021).</em> Presented at the International Society of Bayesian Analysis 2021.</p></li>
-<li><p><a href="https://arxiv.org/abs/2009.10481">An R package for Normality in Stationary Processes</a>. <em>Alonzo Matamoros A, Nieto-Reyes A. (2020)</em>. Submitted to Journal of R.</p></li>
-</ul>
-</section>
-<section id="education" class="level2">
-<h2 data-anchor-id="education">Education</h2>
-<section id="ph.d.-candidate-in-computer-science." class="level3">
-<h3 data-anchor-id="ph.d.-candidate-in-computer-science.">Ph.D.&nbsp;candidate in Computer Science.</h3>
-<p><em>Aalto University, Finland | October 2020</em>.</p>
-</section>
-<section id="m.sc.-in-mathematics-and-computer-science." class="level3">
-<h3 data-anchor-id="m.sc.-in-mathematics-and-computer-science.">M.Sc. in Mathematics and Computer Science.</h3>
-<p><em>Universidad de Cantabria, Spain | October 2019 - October 2020</em>.</p>
-</section>
-<section id="certification-in-probability." class="level3">
-<h3 data-anchor-id="certification-in-probability.">Certification in Probability.</h3>
-<p><em>Society of Actuaries, U.S.A. | November 2016</em>.</p>
-</section>
-<section id="b.-sc.-in-mathematics-and-computer-science." class="level3">
-<h3 data-anchor-id="b.-sc.-in-mathematics-and-computer-science.">B. Sc. in Mathematics and Computer Science.</h3>
-<p><em>Universidad Nacional Autonoma de Honduras | October 2010 - October 2015</em>.</p>
-</section>
-</section>
-<section id="experience" class="level2">
-<h2 data-anchor-id="experience">Experience</h2>
-<section id="research-contract" class="level3">
-<h3 data-anchor-id="research-contract">Research contract</h3>
-<p><em>Finnish Center of Artificial Intelligence | October 2020.</em></p>
-<p>Studied the uncertainty of Cross-Validation methods when comparing probabilistic machine learning models. Proposed an algorithm for automatic forecasting with probabilistic time-series models.</p>
-<p><strong>Skills</strong>: <code>R, Python, ML, Model Comparison, Data Visualization.</code>.</p>
-</section>
-<section id="assistant-professor-statistics-department" class="level3">
-<h3 data-anchor-id="assistant-professor-statistics-department">Assistant Professor, Statistics Department</h3>
-<p><em>Universidad Nacional Autonoma de Honduras (UNAH) | October 2017 – October 2020.</em></p>
-<p>Imparted Statistical Inference, Stochastic Processes, and Linear Models classes for the department of Statistics.</p>
-<p><strong>Skills</strong>: <code>Julia, STATA, Mathematics, Bayesian Statistics</code>.</p>
-</section>
-<section id="data-analyst" class="level3">
-<h3 data-anchor-id="data-analyst">Data analyst</h3>
-<p><em>Instituto Hondureño de Transporte Público | January 2017 – April 2018.</em></p>
-<p>Designed statistical models for estimating the public transport demands using simulation and stochastic processes. Adapted dynamic econometric models to analyze Tegucigalpa, Honduras’s public transport system.</p>
-<p><strong>Skills</strong>: <code>Simulation, Probability, Mathematical Modeling, Bayesian Statistics</code>.</p>
-</section>
-<section id="actuarial-analyst" class="level3">
-<h3 data-anchor-id="actuarial-analyst">Actuarial analyst</h3>
-<p><em>Instituto Hondureño de Seguridad Social | January 2016 – January 2017.</em></p>
-<p>Wrote scripts for data cleaning and summaries for the actuarial evaluation of the total of affiliates in Honduras’ primary pension system. Created big-data modules for the actuarial analysis of the pension system.</p>
-<p><strong>Skills</strong>:<code>SQL, Data-cleaning, Big-data, Actuarial Modeling</code>.</p>
-</section>
-<section id="statistical-consultant" class="level3">
-<h3 data-anchor-id="statistical-consultant">Statistical Consultant</h3>
-<p><em>Instituto Hondureño de Turismo | January 2015 – January 2016.</em></p>
-<p>Designed the Sampling procedure for estimating the Touristic Expenditure in Honduras. I implemented time-series models for analyzing the principal financial indicators related to tourism.</p>
-<p><strong>Skills</strong>: <code>SPSS, Excell, forecasting, time-series</code>.</p>
+</div>
+</a>
+<div class="listing-categories">
+<div class="listing-category" onclick="window.quartoListingCategory('Regression'); return false;">
+Regression
+</div>
+<div class="listing-category" onclick="window.quartoListingCategory('code'); return false;">
+code
+</div>
+<div class="listing-category" onclick="window.quartoListingCategory('analysis'); return false;">
+analysis
+</div>
+</div>
+<a href="./posts/GLMs/index.html">
+<div class="listing-description">
+Este post resume el workflow básico para realizar un análisis estadístico en un enfoque clásico.
+</div>
+</a>
+</div>
+<div class="metadata">
+<a href="./posts/GLMs/index.html">
+<div class="listing-date">
+Nov 14, 2022
+</div>
+<div class="listing-author">
+Asael Alonzo Matamoros.
+</div>
+</a>
+</div>
+</div>
+<div class="quarto-post image-right" data-index="2" data-categories="news,introduction,Baseline" data-listing-date-sort="1668319200000" data-listing-file-modified-sort="1668640175139" data-listing-reading-time-sort="2.795">
+<div class="thumbnail">
+<p><a href="./posts/ABR/index.html"> <img src="./posts/ABR/image.jpg" class="thumnail-image"> </a></p>
+</div>
+<div class="body">
+<a href="./posts/ABR/index.html">
+<h3 class="no-anchor listing-title">
+Applied Bayesian Regression
+</h3>
+<div class="listing-subtitle">
 
-
-
-</section>
-</section>
-
-</main> <!-- /main -->
+</div>
+</a>
+<div class="listing-categories">
+<div class="listing-category" onclick="window.quartoListingCategory('news'); return false;">
+news
+</div>
+<div class="listing-category" onclick="window.quartoListingCategory('introduction'); return false;">
+introduction
+</div>
+<div class="listing-category" onclick="window.quartoListingCategory('Baseline'); return false;">
+Baseline
+</div>
+</div>
+<a href="./posts/ABR/index.html">
+<div class="listing-description">
+Este post presenta el contenido, direcciones y detalles de “<em>Applied Bayesian Regression.</em>”
+</div>
+</a>
+</div>
+<div class="metadata">
+<a href="./posts/ABR/index.html">
+<div class="listing-date">
+Nov 13, 2022
+</div>
+<div class="listing-author">
+Asael Alonzo Matamoros
+</div>
+</a>
+</div>
+</div>
+</div>
+<div class="listing-no-matching d-none">
+No matching items
+</div>
+</div></main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
 window.document.addEventListener("DOMContentLoaded", function (event) {
   const toggleBodyColorMode = (bsSheetEl) => {
@@ -352,6 +459,13 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   if (hasAlternateSentinel()) {
     toggleColorMode(true);
   } 
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
   const clipboard = new window.ClipboardJS('.code-copy-button', {
     target: function(trigger) {
       return trigger.previousElementSibling;
