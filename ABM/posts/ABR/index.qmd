@@ -13,7 +13,7 @@ Este post presenta el contenido, direcciones y detalles de "*Applied Bayesian Re
 
 La segunda parte del curso se impartirá regresión Bayesiana aplicada, el objetivo principal es que el estudiante pueda resolver un problema de regresión con un conjunto de datos reales mediante un ordenador, independiente del enfoque de inferencia a utilizar. 
 
-El material de la clase se encuentra en el repositorio [Applied-Bayesian-Regression](https://github.com/asael697/Appplied-Bayesian-Regression). Este presenta el contenido y cuadernos para la clase de Modelos lineales para la Maestría en Matemática, tercer periodo del año 2021. 
+El material de la clase se encuentra en el repositorio [Applied-Bayesian-Regression](https://github.com/asael697/Appplied-Bayesian-Regression). Este presenta el contenido en cuadernos de la clase de "Modelos lineales" de la 'Maestría en Matemática, UNAH", tercer periodo del año 2022. Los archivos más importantes son: 
 
   + [Notebooks](https://github.com/asael697/Appplied-Bayesian-Regression/tree/main/Notebooks): Guarda los cuadernos de la clase en formato `.md`  para que puedan ser visualizados de forma rápida por los alumnos.
   
