@@ -2,7 +2,7 @@
 title: "Modelos Lineales Generalizados Aplicados"
 author: "Asael Alonzo Matamoros."
 date: "2022-11-14"
-categories: [Regression, code, analysis]
+categories: [Regression, code, GLMs]
 image: "image.jpg"
 bibliography: ref.bib
 format: 
@@ -49,7 +49,7 @@ $$l(y;\theta) = \sum_{i=1}^n y_i b(\theta_i) +\sum_{i=1}^nc(\theta_i) + \sum_{i=
 El método de optimización más popular en GLMs es [Máxima Verosimilitud]() que consiste en optimizar la log-verosimilitud, o simplemente resolver  la función de score.
 
 $$U(y;\theta) = \frac{\partial}{\partial \theta} l(y;\theta) = 0.$$
-Generalmente resolver U implica resolver un sistema de ecuaciones no lineales, y al inicio el método mas utilizado es el algoritmo de Newton. En la actualidad dicho algoritmo a evolucionado a un [Limited Memory Broyden–Fletcher–Goldfarb–Shanno algorithm](https://en.wikipedia.org/wiki/Limited-memory_BFGS). El algoritmo L-BFGS es un método de Newton que 
+Generalmente resolver $U$ implica resolver un sistema de ecuaciones no lineales, y al inicio el método más utilizado es el algoritmo de Newton. En la actualidad dicho algoritmo a evolucionado a un [Limited Memory Broyden–Fletcher–Goldfarb–Shanno algorithm](https://en.wikipedia.org/wiki/Limited-memory_BFGS). El algoritmo L-BFGS es un método de Quasi-Newton que 
 
   1. Aproxima la matriz Jacobiana usando el método de Broyden, y 
   
@@ -57,7 +57,11 @@ Generalmente resolver U implica resolver un sistema de ecuaciones no lineales, y
   
 ## Incertidumbre de los estimadores
 
-Un estimador es cualquier estadístico $w(y)$ que se utiliza para inferir información de $\beta$. Dado que los estimadores $\hat \beta = w(y)$ son  transformaciones de la muestra. poseen una distribución^[La distribución muestral es la función de probabilidad de los estimadores.]. En la mayoría de los caso la distribución muestral no tiene forma analítica, y esta se aproxima usando remuestreo.
+Un estimador es cualquier estadístico $w(Y)$ que se utiliza para inferir información de $\beta$. Dado que los estimadores $\hat \beta = w(Y)$ son  transformaciones de la muestra, poseen una distribución^[La distribución muestral es la función de probabilidad de los estimadores.]. 
+
+$$w(Y) \sim f(w|\beta).$$
+
+En la mayoría de los casos, la distribución muestral no tiene forma analítica, y esta se aproxima usando remuestreo.
 
 Los algoritmos de remuestreo más utilizados son
 
@@ -65,7 +69,7 @@ Los algoritmos de remuestreo más utilizados son
  
  2. Bootstrap
  
-De los dos algoritmos el mas popular es el algoritmo de Bootstrap que consiste en generar una muestra de estimadores que aproxima la distribución muestral deseada. El algoritmo es:
+De los dos algoritmos el más popular es Bootstrap, que consiste en generar una muestra de estimadores que aproxima la distribución deseada. El algoritmo es:
 
  1. **Elegir** el número de sub-muestras $B$
  
@@ -79,9 +83,9 @@ De los dos algoritmos el mas popular es el algoritmo de Bootstrap que consiste e
  
  4. Usar  $\hat \beta_1,\hat \beta_2, \hat \beta_3 ,\ldots,\hat \beta_B$ para aproximar los intervalos de confianza de  $\hat \beta$.
  
- El muestreo de Jackniffe es un caso particular del Bootstrap que consiste en extraer la sub-muestra $Y_b$ eliminando la b-ésima observación $y_b$ de la muestra original. 
+El método de Jackniffe es un caso particular del Bootstrap que consiste en extraer la sub-muestra $Y_b$ eliminando la b-ésima observación $y_b$ de la muestra original. 
  
-Para análisis de incertidumbre de los estimadores, el Bootstrap provee mejores resultados que el método de Jackniffe, pero el segundo método tiene su nicho al comparar diferentes modelos, [validación cruzada](https://en.wikipedia.org/wiki/Cross-validation_(statistics)). 
+Para análisis de incertidumbre de los estimadores, el Bootstrap provee mejores resultados que el método de Jackniffe, pero el segundo tiene su nicho al comparar diferentes modelos, [validación cruzada](https://en.wikipedia.org/wiki/Cross-validation_(statistics)). 
  
 ## Análisis de los residuos. 
  
@@ -95,7 +99,7 @@ En GLMs solo se revisan generalidades simples de los supuestos como:
  
  + Sean de varianza homogénea $\sigma_R$
  
-En modelos lineales generales, se pueden revisar más supuestos como normalidad, homogeneidad, y estacionaridad. En ML los residuos estiman los errores del modelo $R_i = \hat \varepsilon_i$.
+En modelos lineales simples, se pueden revisar más supuestos como normalidad, homogeneidad, y estacionaridad, ya que los residuos estiman los errores del modelo $R_i = \hat \varepsilon_i$.
 
 Un estadístico importante obtenido de los residuos, es el coeficiente de determinación $R^2$ que establece el porcentaje de varianza explicada por el modelo.
 
@@ -113,11 +117,13 @@ En la práctica, es posible que se desarrollen múltiples modelos que expliquen 
   
   + Root Mean square error $RMSE = \frac{1}{\sqrt n}||R||_2$
   
+  + Mean Absolute Error $MAE = \frac{1}{n}||R||_1$
+  
   + Mean Absolute Percentaje Error $MAPE =\frac{1}{n}\sum_{i=1}^n \left| \frac{R_i}{Y_i} \right|$
 
 ### Selección de variables
 
-Una aplicación de selección de modelos es encontrar modelos reducidos, Esto es encontrar un subconjunto de variables $X_1 \subset X$ tal que el modelo reducido $M_r$ sea lo mas parsimonioso posible. Un modelo parsimonioso brinda mayor explicabilidad, mayor capacidad de aprendizaje y mayor capacidad de generalización.
+Una aplicación de la selección de modelos es encontrar modelos reducidos, esto es encontrar un subconjunto de variables $X_1 \subset X$ tal que el modelo reducido $M_r$ sea lo mas parsimonioso posible. Un modelo parsimonioso brinda mayor explicabilidad, mayor capacidad de aprendizaje y mayor capacidad de generalización.
  
 Los métodos para reducción de variables se les conoce como búsquedas, y los tipos son:
 
@@ -125,7 +131,7 @@ Los métodos para reducción de variables se les conoce como búsquedas, y los t
  
  + Búsquedas hacia atrás.
 
-En búsqueda hacia adelante se inicia con el modelo más pequeño posible, se mide su criterio de información, y luego se agregan variables de forma secuencial de tal forma que el criterio mejore. 
+En búsqueda hacia adelante se inicia con el modelo más pequeño posible, se mide su criterio de información, y luego se agregan variables de forma secuencial de tal forma que el criterio mejore.
 
 ## Aprendizaje
 
@@ -155,7 +161,7 @@ Donde:
  
  + $Y_P = \{Y_1,Y_2,\ldots,Y_k\} \subset Y$ es el conjunto de prueba.
  
- El algoritmo para medir aprendizaje es:
+El algoritmo para medir aprendizaje es:
  
   1. Ajustar los modelos $M_1,M_2,\ldots,M_f$ usando el conjunto de entrenamiento $Y_E$.
   
