@@ -13,6 +13,8 @@ website:
         text: CV
       - href: ABM/index.qmd
         text: Applied Bayesian Modeling
+      - href: DOF/index.qmd
+        text: Depression and other stories
     right:
       - icon: "twitter"        
         href: https://twitter.com/Asael_am
