@@ -5,26 +5,22 @@ about:
   template: marquee
 ---
 
-Hello, I'm Asael, a statistician who programs in R, loves-hates Python, plays way too much Pokemon, talks a lot, is crazy for traveling, and gets depressed often. Welcome to my blog! :). If you want to know more about my work, please check this section where I brag [about myself](about.qmd) or take home a paper ([CV](CVAsaelWork.pdf)) for free XD. 
+Hello, I'm Asael, a statistician who programs in R, loves-hates Python, plays too much Pokemon, talks a lot, is crazy about traveling, and gets depressed often. Welcome to my blog! :). If you want to know more about my work, please check this section where I brag [about myself](about.qmd) or take home a paper ([CV](CVAsaelWork.pdf)) for free XD. 
 
 **Important:** If you are a developer, R fanatic, or statistician, please star my [bayesforecast package](https://github.com/asael697/bayesforecast).
 
-## Asael, an attempt of website/Blog, again?! 
+## Asael, an attempt at website/Blogging, again?! 
 
-Well, yes! One of my major flaws is my English writing, so I am doing this website for three different purposes:
+Yes! If you are reading me now, you might notice that I need practice in my writing, so I am doing this website for three different purposes:
 
   - Improve my [R](https://www.r-project.org/), [Python](https://www.python.org/), and [Julia](https://julialang.org/) skills by presenting some time-series analyses using those languages.
-  
-  - Practice my English writing by saturating everyone, including myself, with this bullsh@#t.
+
+  - Practice my English writing by saturating everyone, including myself.
   
   - Present all those little works and collaborations I do in a compact (*bounded and closed*) set.
   
-## So what's going on with my life now?
+## So, what's going on with my life now?
 
-After three long years abroad studying, traveling, researching, surviving this sh@#t-show (COVID), snow, and rejections, I am going home! For now, this webpage is my new attempt to organize my mess.
-
-If you want to know more about it or are having a heavy season and want somebody to talk to, send me a friend request or mail me. Who knows, you might have a new friend :).
+After three long years abroad studying, traveling, researching, snow, journal rejections, and surviving this sh@#t-show (COVID). I decided to return home, which was a difficult and messy choice. This webpage is my new attempt to organize my thoughts after this unique experience. No more elevator talks! Let me introduce you to my blog: [Depression and other stories](https://asael697.github.io/DOF/)!
 
 **Spoilers alert**: I like to sing out loud with my headphones on in public spaces, so if you find a dude badly singing at a coffee shop in front of the computer, it's me! Please say hi! :).
-
-No more elevator talks! Let me introduce you to my blog: [Depression and other stories](https://asael697.github.io/DOF/)!
