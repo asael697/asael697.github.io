@@ -2,6 +2,7 @@
   {
     "listing": "/ABM/index.html",
     "items": [
+      "/ABM/posts/NB-GLM/index.html",
       "/ABM/posts/Gaussian-LM/index.html",
       "/ABM/posts/GLMs/index.html",
       "/ABM/posts/ABR/index.html"
