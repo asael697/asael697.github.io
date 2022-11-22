@@ -1,5 +1,5 @@
 ---
-title: "Sobrevivencia en el Titani"
+title: "Sobrevivencia en el Titanic"
 subtitle: "GLMs logísticos"
 author: "Asael Alonzo Matamoros"
 date: "2022-11-22"
