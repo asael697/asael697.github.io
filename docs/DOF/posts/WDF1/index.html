@@ -7,9 +7,9 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 <meta name="author" content="Asael Alonzo Matamoros">
-<meta name="dcterms.date" content="2022-11-13">
+<meta name="dcterms.date" content="2022-11-16">
 
-<title>asael_am - Applied Bayesian Regression</title>
+<title>asael_am - So WDF is going on with my life now?</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -21,25 +21,6 @@ ul.task-list li input[type="checkbox"] {
   width: 0.8em;
   margin: 0 0.8em 0.2em -1.6em;
   vertical-align: middle;
-}
-div.csl-bib-body { }
-div.csl-entry {
-  clear: both;
-}
-.hanging div.csl-entry {
-  margin-left:2em;
-  text-indent:-2em;
-}
-div.csl-left-margin {
-  min-width:2em;
-  float:left;
-}
-div.csl-right-inline {
-  margin-left:2em;
-  padding-left:1em;
-}
-div.csl-indent {
-  margin-left: 2em;
 }
 </style>
 
@@ -82,22 +63,6 @@ div.csl-indent {
 }</script>
 <style>html{ scroll-behavior: smooth; }</style>
 
-  <script>window.backupDefine = window.define; window.define = undefined;</script><script src="https://cdn.jsdelivr.net/npm/katex@0.15.1/dist/katex.min.js"></script>
-  <script>document.addEventListener("DOMContentLoaded", function () {
- var mathElements = document.getElementsByClassName("math");
- var macros = [];
- for (var i = 0; i < mathElements.length; i++) {
-  var texText = mathElements[i].firstChild;
-  if (mathElements[i].tagName == "SPAN") {
-   katex.render(texText.data, mathElements[i], {
-    displayMode: mathElements[i].classList.contains('display'),
-    throwOnError: false,
-    macros: macros,
-    fleqn: false
-   });
-}}});
-  </script>
-  <script>window.define = window.backupDefine; window.backupDefine = undefined;</script><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.15.1/dist/katex.min.css">
 
 <link rel="stylesheet" href="../../../styles.css">
 </head>
@@ -118,9 +83,6 @@ div.csl-indent {
 </button>
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll me-auto">
-  <li class="nav-item">
-    <a class="nav-link" href="../../../index.html">Home</a>
-  </li>  
   <li class="nav-item">
     <a class="nav-link" href="../../../about.html">CV</a>
   </li>  
@@ -160,7 +122,7 @@ div.csl-indent {
 <header id="title-block-header" class="quarto-title-block default page-columns page-full">
   <div class="quarto-title-banner page-columns page-full">
     <div class="quarto-title column-body">
-      <h1 class="title">Applied Bayesian Regression</h1>
+      <h1 class="title">So WDF is going on with my life now?</h1>
                                 <div class="quarto-categories">
                 <div class="quarto-category">news</div>
                 <div class="quarto-category">introduction</div>
@@ -178,7 +140,7 @@ div.csl-indent {
       <div>
       <div class="quarto-title-meta-heading">Published</div>
       <div class="quarto-title-meta-contents">
-        <p class="date">November 13, 2022</p>
+        <p class="date">November 16, 2022</p>
       </div>
     </div>
     </div>
@@ -189,125 +151,34 @@ div.csl-indent {
 <!-- main -->
 <div class="quarto-about-marquee">
   <div class="about-image-container">
-    <img src="image.jpg" class="about-image " style="width: 100%;">
+    <img src="image.jpeg" class="about-image " style="width: 100%;">
   </div>
   <div class="about-contents">
      <main class="content quarto-banner-title-block" id="quarto-document-content">
-<p>Este post presenta el contenido, direcciones y detalles de “<em>Applied Bayesian Regression.</em>”</p>
-<p>La segunda parte del curso se impartirá regresión Bayesiana aplicada, el objetivo principal es que el estudiante pueda resolver un problema de regresión con un conjunto de datos reales mediante un ordenador, independiente del enfoque de inferencia a utilizar.</p>
-<p>El material de la clase se encuentra en el repositorio <a href="https://github.com/asael697/Appplied-Bayesian-Regression">Applied-Bayesian-Regression</a>. Este presenta el contenido en cuadernos de la clase de “Modelos lineales” de la ’Maestría en Matemática, UNAH”, tercer periodo del año 2022. Los archivos más importantes son:</p>
-<ul>
-<li><p><a href="https://github.com/asael697/Appplied-Bayesian-Regression/tree/main/Notebooks">Notebooks</a>: Guarda los cuadernos de la clase en formato <code>.md</code> para que puedan ser visualizados de forma rápida por los alumnos.</p></li>
-<li><p><a href="">qmd</a>: Guardas los cuadernos en <code>quarto</code> para poder visualizar el archivo <code>.html</code> usado en la clase, descargar el archivo, y hacer un render desde la consola u <code>Rstudio</code>.</p></li>
-</ul>
-<p>La clase se imparte los <code>Lunes, Martes</code> y <code>Jueves</code> a las <code>17:00</code> horas (GMT -6), Para acceder al enlace zoom de la clase presione <a href="https://aalto.zoom.us/j/63860483890">aquí</a>.</p>
-<section id="contenido" class="level2">
-<h2 data-anchor-id="contenido">Contenido</h2>
-<p>El contenido para el resto del curso es:</p>
-<ul>
-<li><p>Regresión aplicada</p>
-<ul>
-<li>Verosimilitud y función de enlace.</li>
-<li>L-BFGS algorithm.</li>
-<li>Intervalos de confianza, Jackniffe y Bootstrap.</li>
-<li>Análisis de residuos, ANOVA y <span class="math inline">R^2</span> ajustado.</li>
-<li>selección del modelos (BIC, RMSE, MAPE, CV)</li>
-</ul></li>
-<li><p>Repaso de inferencia Bayesiana y Bayesian workflow</p>
-<ul>
-<li>Prior, likelihood, Posterior</li>
-<li>MCMC</li>
-<li>Predictive distribution</li>
-<li>Posterior predictive checks</li>
-<li>Bayes factor, ELPD, LOO-CV.</li>
-</ul></li>
-<li><p>Bayesian Regression</p>
-<ul>
-<li>Bayesian GLMs, normal, Binomial, Poisson and Negative Binomial regressions</li>
-<li>Regularized priors (R2-D2, Horseshoe, Spike Lab)</li>
-<li>Gaussian process regression.</li>
-</ul></li>
-</ul>
-</section>
-<section id="material" class="level2">
-<h2 data-anchor-id="material">Material</h2>
-<p>El material de la clase se extrae de 3 libros, varios artículos y diferentes paquetes de R y Python estos son libres y se encuentran en formato digital en la web.</p>
-<section id="libros" class="level3">
-<h3 data-anchor-id="libros">Libros</h3>
-<ul>
-<li><p><strong>Bayes Rules!</strong> An Introduction to Applied Bayesian Modeling. <a href="https://www.bayesrulesbook.com/">Johnson, Ott and Dogucu, (2021)</a>.</p></li>
-<li><p><strong>Beyond Multiple Linear Regression</strong> Applied Generalized Linear Models and Multilevel Models in R. <a href="https://bookdown.org/roback/bookdown-BeyondMLR/">Roback and Legler (2021)</a>.</p></li>
-<li><p>Bayesian Modeling and Computation in Python. <a href="https://bayesiancomputationbook.com/welcome.html">Martin, Kumar, and Lao (2021)</a>.</p></li>
-</ul>
-</section>
-<section id="artículos-principales" class="level3">
-<h3 data-anchor-id="artículos-principales">Artículos principales</h3>
-<ul>
-<li><p><em>Bayesian Regression Using a Prior on the Model Fit: The R2-D2 shrinkage Prior.</em> <span class="citation" data-cites="R2_D2">Zhang et al. (<a href="#ref-R2_D2" role="doc-biblioref">2022</a>)</span></p></li>
-<li><p><em>Handling Sparsity via the Horseshoe.</em> <span class="citation" data-cites="Horshoe">Carvalho, Polson, and Scott (<a href="#ref-Horshoe" role="doc-biblioref">2009</a>)</span></p></li>
-<li><p><em>Bayesian Variable Selection in Linear Regression.</em> <span class="citation" data-cites="SpikePrior">Mitchell and Beauchamp (<a href="#ref-SpikePrior" role="doc-biblioref">1988</a>)</span></p></li>
-</ul>
-</section>
-<section id="paquetes" class="level3">
-<h3 data-anchor-id="paquetes">Paquetes</h3>
-<p>Los lenguajes de programación a usar son R y Python.</p>
-</section>
-<section id="r-core-team" class="level3">
-<h3 data-anchor-id="r-core-team">R core team</h3>
-<ul>
-<li><p>Probabilistic Programming Language: Stan <a href="https://mc-stan.org/users/interfaces/rstan">mc-stan</a>.</p></li>
-<li><p>paquetes:</p>
-<ul>
-<li><a href="https://mc-stan.org/rstanarm/">rstanarm</a>, paquete para ajustar modelos lineales.</li>
-<li><a href="https://mc-stan.org/bayesplot/">bayesplot</a>, visualización de posterioris.</li>
-<li><a href="https://mc-stan.org/loo/">loo</a> seleccion de modelos.</li>
-</ul></li>
-</ul>
-</section>
-<section id="python" class="level3">
-<h3 data-anchor-id="python">Python</h3>
-<ul>
-<li><p>Probabilistic Programming Language: <a href="https://www.pymc.io/welcome.html">PyMC</a>.</p></li>
-<li><p>paquetes:</p>
-<ul>
-<li><a href="https://bambinos.github.io/bambi/main/index.html#">Bambi</a>, Ajustar modelos lineales.</li>
-<li><a href="https://arviz-devs.github.io/arviz/index.html">ArviZ</a>, visualización de datos y selección de modelos con LOO.</li>
-</ul></li>
-</ul>
-</section>
-</section>
-<section id="referencias" class="level2">
-
-
+<p>A story of the my last month.</p>
+<p>Hello everyone! My name is Asael Alonzo Matamoros, and I just came back home (<em>Honduras</em>). After 2 years of living in Finland, I got depression, unfinished business, and a will to write about statistics (<em>and obviously about the stupid Colombian telenovela I call my life</em>).</p>
+<p>It has been a month since I returned. The adaptation has been a shit show, but everything is not lost. Some things turn out to be good or even enjoyable. For example, I am attending three weddings, all of whom are from the same group of friends. Yes! I am the “single one, and out of this minor detail, I am happy to celebrate these significant events with them. And obviously, I can’t forget that now I live with five incredible cutenesses that are always happy to see me. Please check them out in the following picture.</p>
+<p><img src="doggies.jpeg" class="img-fluid"></p>
+<p>So, now I want to answer the critical question: <strong>What the fuck is going on with my life?!</strong> Well, I don’t know, but who really does? A good answer might be that I am recovering from some exhausting experiences that came out this year. Out of the drama, I want to share three exciting projects with you (<em>Yes, you! The person who might be reading this, and I gotta say I love you!</em>).</p>
+<ol type="1">
+<li><p>I am finishing my research in Bayesian ARIMA models for time-series analysis.</p></li>
+<li><p>Monchys, Juan, and I created a meeting group called “Beer and Science,” where we do nerd talks about stories, research, and science.</p></li>
+<li><p>I have a Google Season of Docs contract with ArviZ.</p></li>
+</ol>
+<p>I can’t talk about my research now, but let’s talk about Beer; in the end, it is more fun.</p>
+<section id="beer-and-science" class="level2">
+<h2 data-anchor-id="beer-and-science">Beer and Science</h2>
+<p>One of my guilty pleasures is watching way too many YouTube videos. I love those informative (<em>nerdy</em>) vlogs in which people talk about their research, technology, or knowledge field. Let’s be honest; it is fun to watch thirteen-minute videos explaining how Einstein came up with the relativity theory idea. And if not, I like it anyway, and IDGAF about your opinion!</p>
+<p>The project’s central idea is to share some content about what we are doing (<em>We try to do research, but we suck at it</em>) and motivate others in our work or at least to read a book. Not to forget that I am a materialistic fuck, and I love to hear public praise like a stupid diva (<em>a considerable motivation for myself</em>). So, after a minimal amount of consideration, I contacted my friend Monchys who has vast experience drinking (<em>I mean researching</em>) and discussed the idea with him. Look at us now! We got some shit done, and eureka! “Beer and science” was born!</p>
+<p><img src="BnS.jpeg" class="img-fluid"></p>
+<p>Our first event was “La radiación de Curie,” where we wanted to talk about radiation, its impact on society, radium, and the consequences of misusing technology. Juan gave a fantastic talk about the mechanism of radiation, illustrating the work of some extraordinary scientists in the field. Monchys gave some examples where radiation is applied in real-life applications. And I talked about the misuse of radium and its consequences for society. I connected the story with Machine Learning and discussed some cases where artificial intelligence has been misused. Yes! You got me in a box! I love to shit talk about ML.</p>
+<p><img src="Curie.jpeg" class="img-fluid"></p>
+<p>The event was a relative success (<em>let’s agree that 22 persons attending the event were a success</em>), and we decided to make a second round. I hope we can agree on the following topic (<em>spoilers alert, the next topic might be “Intelligence”</em>). You are all invited, and I hope to see you around so we can have a funny nerd talk about science (<em>and, of course, get drunk together</em>).</p>
+<p>Seriously! If you are interested in our event, please subscribe for free <a href="https://www.meetup.com/beer-science-hn/">here</a>.</p>
 
 
 </section>
-<div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" role="doc-bibliography"><h2 class="anchored quarto-appendix-heading">Referencias</h2><div id="refs" class="references csl-bib-body hanging-indent" role="doc-bibliography">
-<div id="ref-Horshoe" class="csl-entry" role="doc-biblioentry">
-Carvalho, Carlos M., Nicholas G. Polson, and James G. Scott. 2009. <span>“Handling Sparsity via the Horseshoe.”</span> In <em>Proceedings of the Twelth International Conference on Artificial Intelligence and Statistics</em>, edited by David van Dyk and Max Welling, 5:73–80. Proceedings of Machine Learning Research. Hilton Clearwater Beach Resort, Clearwater Beach, Florida USA: PMLR. <a href="https://proceedings.mlr.press/v5/carvalho09a.html">https://proceedings.mlr.press/v5/carvalho09a.html</a>.
-</div>
-<div id="ref-Casella" class="csl-entry" role="doc-biblioentry">
-Casella, George, and Roger Berger. 2001. <em>Statistical Inference</em>. Duxbury Resource Center. <a href="http://www.amazon.fr/exec/obidos/ASIN/0534243126/citeulike04-21">http://www.amazon.fr/exec/obidos/ASIN/0534243126/citeulike04-21</a>.
-</div>
-<div id="ref-degroot2012" class="csl-entry" role="doc-biblioentry">
-DeGroot, M. H., and M. J. Schervish. 2012. <em>Probability and Statistics</em>. Addison-Wesley. <a href="https://books.google.es/books?id=4TlEPgAACAAJ">https://books.google.es/books?id=4TlEPgAACAAJ</a>.
-</div>
-<div id="ref-gelman2013" class="csl-entry" role="doc-biblioentry">
-Gelman, A., J. B. Carlin, H. S. Stern, D. B. Dunson, A. Vehtari, and D. B. Rubin. 2013. <em>Bayesian Data Analysis, Third Edition</em>. Chapman &amp; Hall/CRC Texts in Statistical Science. Taylor &amp; Francis. <a href="https://books.google.nl/books?id=ZXL6AQAAQBAJ">https://books.google.nl/books?id=ZXL6AQAAQBAJ</a>.
-</div>
-<div id="ref-Miggon2014" class="csl-entry" role="doc-biblioentry">
-Migon, Helio, Dani Gamerman, and Francisco Louzada. 2014. <em>Statistical Inference. An Integrated Approach</em>. Chapman and Hall CRC Texts in Statistical Science. Chapman; Hall.
-</div>
-<div id="ref-SpikePrior" class="csl-entry" role="doc-biblioentry">
-Mitchell, T. J., and J. J. Beauchamp. 1988. <span>“Bayesian Variable Selection in Linear Regression.”</span> <em>Journal of the American Statistical Association</em> 83 (404): 1023–32. <a href="https://doi.org/10.1080/01621459.1988.10478694">https://doi.org/10.1080/01621459.1988.10478694</a>.
-</div>
-<div id="ref-BMLR2021" class="csl-entry" role="doc-biblioentry">
-Roback, paul., and Julie. Legler. 2021. <em><span class="nocase">Beyond Multiple Linear Regression: Applied Generalized Linear Models an Multilevel Models in R</span></em>. <span>Boca Raton</span>.
-</div>
-<div id="ref-R2_D2" class="csl-entry" role="doc-biblioentry">
-Zhang, Yan Dora, Brian P. Naughton, Howard D. Bondell, and Brian J. Reich. 2022. <span>“Bayesian Regression Using a Prior on the Model Fit: The R2-D2 Shrinkage Prior.”</span> <em>Journal of the American Statistical Association</em> 117 (538): 862–74. <a href="https://doi.org/10.1080/01621459.2020.1825449">https://doi.org/10.1080/01621459.2020.1825449</a>.
-</div>
-</div></section></div></main> 
+</main> 
   </div>
 </div>
  <!-- /main -->
