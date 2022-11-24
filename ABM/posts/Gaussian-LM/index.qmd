@@ -1,5 +1,5 @@
 ---
-title: "*GLMs Gaussianos*: Capacidad de Motores de carros"
+title: "*GLMs Gaussianos*: Capacidad de motores de carros"
 author: "Asael Alonzo Matamoros"
 date: "2022-11-15"
 categories: [Gaussian,code,analysis]
