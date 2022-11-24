@@ -14,7 +14,7 @@ format:
     anchor-sections: true
 ---
 
-Este post presenta un análisis la base `roaches`` usando un modelo lineal generalizado de conteo. 
+Este post presenta un análisis la base `roaches` usando un modelo lineal generalizado de conteo. 
 
 Se desea establecer la eficacia de cierto pesticida para el reducir el número de cucarachas en apartamentos urbanos. El tratamiento se aplicó a 158  de 262 apartamentos, $y$ es el número de cucarachas atrapadas después de aplicar dicho tratamiento. 
 
