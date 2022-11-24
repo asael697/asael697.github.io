@@ -14,7 +14,7 @@ format:
     anchor-sections: true
 ---
 
-Este post presenta un análisis la base `Titanic` usando un modelo Aditivo generalizado Logístico.
+Este post presenta un análisis la base `Titanic` usando un modelo aditivo generalizado Logístico.
 
 Los modelos aditivos generalizados (GAMs) relacionan forma no lineal al conjunto de v.a. independientes $Z = \{Z_1,Z_2,\ldots,Z_n\}$, tal que $Z_i = (Y_i,X_i) \in \mathbb R^{d+1}$. La colección $Z$ sigue un GAM si: 
 
@@ -33,7 +33,7 @@ Donde:
 
 $$f_s(X) \approx \sum^K_{k = 1}\beta_{k,s} b_{k,s}(X),$$ 
   
-  + donde $\beta_{k,s}$ son los coeficientes por estimar y $b_{k,s}(X)$ son una base de funciones *"conocidaS."*  
+  + donde $\beta_{k,s}$ son los coeficientes por estimar y $b_{k,s}(X)$ son una base de funciones *"conocidas."*  
   
 Dado que  
 $$B_s(X) = [b_{1,s}(X),b_{2,s}(X),\ldots,b_{K,s}(X)],$$ 
