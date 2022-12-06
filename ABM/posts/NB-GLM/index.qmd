@@ -262,17 +262,7 @@ kfold = function(df,k){
     p3  = predict(m3,dfP)
     p31 = predict(m31,dfP)
     
-    # Calcular AIC y RMSE
-    aic = c(
-            AIC(m1),
-            AIC(m3),
-            AIC(m31)
-            )
-    rmse = c(
-             RMSE(pred =  p1,obs = dfP[,1]),
-             RMSE(pred =  p3,obs = dfP[,1]),
-             RMSE(pred =  p31,obs = dfP[,1])
-             )
+    # Calcular MAE
     mae = c(
              MAE(pred =  p1,obs = dfP[,1]),
              MAE(pred =  p3,obs = dfP[,1]),
@@ -280,43 +270,13 @@ kfold = function(df,k){
             )
 
     # Unir los datos
-    mat = rbind(mat,c(aic,rmse,mae)) 
+    mat = rbind(mat,mae) 
   }
-  colnames(mat) = c("AIC1", "AIC3", "AIC31",
-                    "RMSE1","RMSE3","RMSE31",
-                    "MAE1","MAE3","MAE31")
+  colnames(mat) = c("MAE1","MAE3","MAE31")
   row.names(mat) = NULL
   return(mat)
 }
-```
 
-@tbl-cv presenta los resultados obtenidos al realizar 5-fold-cv, bajo todos los criterios presentados, el modelo $M_3$ presenta las mejores predicciones. Por lo tanto, $M_3$ es el modelo con Mayor aprendizaje.
-
-```{r}
-#| label: tbl-cv
-#| tbl-cap: "Criterios de información de los modelos. Mediante Validación cruzada. La tabla presenta los criterios AIC, RMSE,  y MAE bajo un 5-fold cv."
-
-rst = kfold(df = roaches,k = 5)
-x = t(apply(rst,MARGIN = 2,FUN = "quantile",probs = c(0.025,0.5,0.975)))
-
-# Estética
-x = data.frame(x)
-x$pars =  c("AIC1", "AIC3", "AIC31",
-            "RMSE1","RMSE3","RMSE31",
-            "MAE1","MAE3","MAE31")
-
-colnames(x) = c("q2.5%","Median","q97.5%","Criterio")
-
-ft = flextable(x[c(4,1,2,3)])
-autofit(ft)
-```
-
-@tbl-cv compara los modelos de conteo, se observa que  en la mayoría de criterios el modelo Binomial Negativa completo, presenta los mejores resultados y el mejor ajuste, por lo tanto, seleccionamos al modelo $M_3$ que este deberá ser comparado con el modelo log-normal.
-
-```{r}
-#| code-fold: true
-#| label: tbl-cv1
-#| tbl-cap: "Criterios de información del modelo log-N. Mediante Validación cruzada. La tabla presenta los criterios AIC, RMSE,  y MAE bajo un 5-fold cv."
 kfold1 = function(df,k){
   # Generar la particion
   kfld = createFolds(df[,1],k = k)
@@ -331,20 +291,39 @@ kfold1 = function(df,k){
     p2  = predict(m2,dfP)
 
     # Unir los datos
-    mat = rbind(mat,c(AIC(m2),RMSE(pred =  p2,obs = dfP[,1]),MAE(pred =  p2,obs = dfP[,1]))) 
+    mat = rbind(mat,MAE(pred =  p2,obs = dfP[,1])) 
   }
-  colnames(mat) = c("AIC1", "RMSE1","MAE1")
+  colnames(mat) = c("MAE2")
   row.names(mat) = NULL
   return(mat)
 }
+```
 
-rst = kfold1(df = df,k = 5)
+@tbl-cv compara los modelos de conteo, se observa que  en la mayoría de criterios el modelo Binomial Negativa completo, presenta los mejores resultados y el mejor ajuste, por lo tanto, seleccionamos al modelo $M_3$ que este deberá ser comparado con el modelo log-normal.
+
+```{r}
+#| code-fold: true
+#| label: tbl-cv
+#| tbl-cap: "Criterios de información del modelo log-N. Mediante Validación cruzada. La tabla presenta los criterios AIC, RMSE,  y MAE bajo un 5-fold cv."
+
+rst = kfold(df = roaches,k = 5)
 x = t(apply(rst,MARGIN = 2,FUN = "quantile",probs = c(0.025,0.5,0.975)))
 
 # Estética
 x = data.frame(x)
-x$pars = c("AIC2", "RMSE2","MAE2")
-colnames(x) = c("q2.5%","Median","q97.5%","Criterio")
+x$pars =  c("M1","M3","M3.1")
+
+colnames(x) = c("q2.5%","Median","q97.5%","MAE")
+
+rst1 = kfold1(df = df,k = 5)
+x1 = t(apply(rst1,MARGIN = 2,FUN = "quantile",probs = c(0.025,0.5,0.975)))
+
+# Estética
+x1 = data.frame(x1)
+x1$pars = c("M2")
+colnames(x1) = c("q2.5%","Median","q97.5%","MAE")
+
+x = rbind(x,x1)
 
 ft = flextable(x[c(4,1,2,3)])
 autofit(ft)
@@ -354,10 +333,10 @@ Contrario a los esperado, el modelo log-normal $M_2$ presenta mejores resultados
 
 Es importante resaltar que las predicciones realizadas con el modelo $M_2$ se realizaron en escala logarítmica, 
 
-$$RMSE = \frac{1}{\sqrt n}||\hat{\log (y_P)} -\log (y_P)||_2$$
+$$RMSE = \frac{1}{\sqrt n}||\hat{\log (y_P)} -\log (y_P)||_2.$$
 Es necesario revisar si al transformar de forma inversa el modelo mantiene las predicciones. En caso de evaluar las predicciones en la escala natural de los datos, corroborar si:
 
-$$RMSE = \frac{1}{\sqrt n}||e^{\mu_p+0.5\sigma} -y_P||_2$$
+$$RMSE = \frac{1}{\sqrt n}||e^{\mu_p+0.5\sigma} -y_P||_2.$$
 Donde $\mu_P$ son las predicciones obtenidas del modelo en escala logarítmica.
 
 ## Referencias

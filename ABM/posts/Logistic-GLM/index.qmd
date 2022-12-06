@@ -14,7 +14,7 @@ format:
     anchor-sections: true
 ---
 
-Este post presenta un análisis la base `Titanic` usando un modelo lineal generalizado Logístico.
+Este post presenta un análisis la base `Titanic` usando un modelo lineal generalizado logístico.
 
 El nombre del barco "Titanic" se inspira de los titanes de la mitología Griega, y pese que fue de los cruceros más grandes de su época, se hundió en su primera excursión, ocasionando la muerte de miles de sus tripulantes. Se desea crear un modelo que prediga el número de sobrevivientes en la excursión, para eso utilizaremos los registros de muerte del evento, la base de datos se divide en dos conjuntos
 
@@ -217,7 +217,6 @@ kfold = function(df,k){
               data = dfE,family = binomial)
     m3  = glm(Survived ~ Pclass + Sex + Age + SibSp,
               data = dfE,family = binomial)
-
     
     p1  = predict(m1,dfP,type = "response")
     p1 =  ifelse(p1 > 0.5, 1, 0)
@@ -232,11 +231,10 @@ kfold = function(df,k){
       sum(diag(round(prop.table(table(p3, dfP[,2]))*100,2)))
     )
 
-
     # Unir los datos
     mat = rbind(mat,Accuracy) 
   }
-  colnames(mat) = c("Accuracy1","Accuracy2","Accuracy3")
+  colnames(mat) = c("M1","M2","M3")
   row.names(mat) = NULL
   return(mat)
 }
@@ -252,8 +250,8 @@ x = t(apply(rst,MARGIN = 2,FUN = "quantile",probs = c(0.025,0.5,0.975)))
 
 # Estética
 x = data.frame(x)
-x$pars =  c("Accuracy1", "Accuracy2", "Accuracy3")
-colnames(x) = c("q2.5%","Median","q97.5%","Criterio")
+x$pars =  c("M1", "M2", "M3")
+colnames(x) = c("q2.5%","Median","q97.5%","Accuracy")
 
 ft = flextable(x[c(4,1,2,3)])
 autofit(ft)
