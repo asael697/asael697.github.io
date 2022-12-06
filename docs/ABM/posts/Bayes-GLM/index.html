@@ -1,0 +1,752 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.1.179">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="Asael Alonzo Matamoros">
+<meta name="dcterms.date" content="2022-11-29">
+
+<title>asael_am - Una introducción al Bayesian Workflow.</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1.6em;
+  vertical-align: middle;
+}
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+}
+.hanging div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}
+</style>
+
+
+<script src="../../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../../">
+<script src="../../../site_libs/quarto-html/quarto.js"></script>
+<script src="../../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="../../../site_libs/quarto-html/quarto-syntax-highlighting-dark.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<script src="../../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../../../site_libs/bootstrap/bootstrap-dark.min.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 20,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit"
+  }
+}</script>
+<style>html{ scroll-behavior: smooth; }</style>
+
+  <script>window.backupDefine = window.define; window.define = undefined;</script><script src="https://cdn.jsdelivr.net/npm/katex@0.15.1/dist/katex.min.js"></script>
+  <script>document.addEventListener("DOMContentLoaded", function () {
+ var mathElements = document.getElementsByClassName("math");
+ var macros = [];
+ for (var i = 0; i < mathElements.length; i++) {
+  var texText = mathElements[i].firstChild;
+  if (mathElements[i].tagName == "SPAN") {
+   katex.render(texText.data, mathElements[i], {
+    displayMode: mathElements[i].classList.contains('display'),
+    throwOnError: false,
+    macros: macros,
+    fleqn: false
+   });
+}}});
+  </script>
+  <script>window.define = window.backupDefine; window.backupDefine = undefined;</script><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.15.1/dist/katex.min.css">
+
+<link rel="stylesheet" href="../../../styles.css">
+</head>
+
+<body class="nav-fixed">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg navbar-dark ">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container">
+    <a class="navbar-brand" href="../../../index.html">
+    <span class="navbar-title">asael_am</span>
+    </a>
+  </div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../../../about.html">CV</a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../../ABM/index.html">Applied Bayesian Modeling</a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../../DOF/index.html">Depression and other stories</a>
+  </li>  
+</ul>
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://twitter.com/Asael_am"><i class="bi bi-twitter" role="img">
+</i> 
+ </a>
+  </li>  
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://github.com/asael697"><i class="bi bi-github" role="img">
+</i> 
+ </a>
+  </li>  
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://www.linkedin.com/in/asael-alonzo-matamoros-8466836a/"><i class="bi bi-linkedin" role="img">
+</i> 
+ </a>
+  </li>  
+</ul>
+              <div class="quarto-toggle-container">
+                  <a href="" class="quarto-color-scheme-toggle nav-link" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
+              </div>
+              <div id="quarto-search" class="" title="Search"></div>
+          </div> <!-- /navcollapse -->
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<header id="title-block-header" class="quarto-title-block default page-columns page-full">
+  <div class="quarto-title-banner page-columns page-full">
+    <div class="quarto-title column-body">
+      <h1 class="title">Una introducción al Bayesian Workflow.</h1>
+                                <div class="quarto-categories">
+                <div class="quarto-category">Bayesian</div>
+                <div class="quarto-category">analysis</div>
+                <div class="quarto-category">code</div>
+                <div class="quarto-category">prior</div>
+                <div class="quarto-category">posterior</div>
+              </div>
+                  </div>
+  </div>
+    
+  
+  <div class="quarto-title-meta">
+
+      <div>
+      <div class="quarto-title-meta-heading">Author</div>
+      <div class="quarto-title-meta-contents">
+               <p>Asael Alonzo Matamoros </p>
+            </div>
+    </div>
+      
+      <div>
+      <div class="quarto-title-meta-heading">Published</div>
+      <div class="quarto-title-meta-contents">
+        <p class="date">November 29, 2022</p>
+      </div>
+    </div>
+      
+    </div>
+    
+  
+  </header><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#la-historia-de-siempre" id="toc-la-historia-de-siempre" class="nav-link active" data-scroll-target="#la-historia-de-siempre">La historia de siempre</a>
+  <ul class="collapse">
+  <li><a href="#densidad-predictiva" id="toc-densidad-predictiva" class="nav-link" data-scroll-target="#densidad-predictiva">Densidad Predictiva</a></li>
+  </ul></li>
+  <li><a href="#tipos-de-priors" id="toc-tipos-de-priors" class="nav-link" data-scroll-target="#tipos-de-priors">Tipos de Priors</a></li>
+  <li><a href="#estimación-de-la-posterior" id="toc-estimación-de-la-posterior" class="nav-link" data-scroll-target="#estimación-de-la-posterior">Estimación de la posterior</a>
+  <ul class="collapse">
+  <li><a href="#estimadores-puntuales" id="toc-estimadores-puntuales" class="nav-link" data-scroll-target="#estimadores-puntuales">Estimadores puntuales</a></li>
+  <li><a href="#incertidumbre-de-los-estimadores" id="toc-incertidumbre-de-los-estimadores" class="nav-link" data-scroll-target="#incertidumbre-de-los-estimadores">Incertidumbre de los estimadores</a></li>
+  </ul></li>
+  <li><a href="#posterior-predictive-checks" id="toc-posterior-predictive-checks" class="nav-link" data-scroll-target="#posterior-predictive-checks">Posterior Predictive checks</a>
+  <ul class="collapse">
+  <li><a href="#log-verosimilitud" id="toc-log-verosimilitud" class="nav-link" data-scroll-target="#log-verosimilitud">log-Verosimilitud</a></li>
+  </ul></li>
+  <li><a href="#selección-de-modelos" id="toc-selección-de-modelos" class="nav-link" data-scroll-target="#selección-de-modelos">Selección de modelos</a></li>
+  <li><a href="#referencias" id="toc-referencias" class="nav-link" data-scroll-target="#referencias">Referencias</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content quarto-banner-title-block" id="quarto-document-content">
+
+
+
+
+<p>Este post da una pequeña introducción al Bayesian Workflow.</p>
+<p>Los métodos Bayesianos modernos se desarrollan mayoritariamente mediante ordendores. En la actualidad, múltiples algoritmos permiten aproximar las densidades a posterior en tiempo real, disminuyendo la brecha de complejidad que existía en el desarrollo y evaluación de modelos probabilistas.</p>
+<p>Las características mas importantes de usar métodos Bayesianos en la práctica son:</p>
+<ol type="1">
+<li><p>Las cantidades desconocidas se describen usando funciones de densidad (<em>parámetros</em>).</p></li>
+<li><p>El <em>teorema de Bayes</em> es utilizado para actualizar los parámetros desconocidos.</p></li>
+<li><p>Permite incorporar información adicional en el proceso de estimación de los parámetros mediante una densidad (<em>priori</em>).</p></li>
+</ol>
+<p>Es importante resaltar que este Bayesian Workflow <span class="citation" data-cites="gelman2020bayesian">Andrew Gelman et al. (<a href="#ref-gelman2020bayesian" role="doc-biblioref">2020</a>)</span>, es análogo al <a href="https://asael697.github.io/ABM/posts/GLMs/">workflow Básico</a> presentado para análisis de modelos frecuentistas. Previo a nuestra introducción de la metodología a utilizar, es necesario establecer nuestros supuestos y objetos de estudio.</p>
+<section id="la-historia-de-siempre" class="level2">
+<h2 class="anchored" data-anchor-id="la-historia-de-siempre">La historia de siempre</h2>
+<p>Sea <span class="math inline">Y = \{Y_1,Y_2,\ldots,Y_n\}</span> una colección de variables aleatorias<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a> intercambiables<a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a>. Sea <span class="math inline">y = (y_1,y_2,\ldots,y_n)</span> el vector de datos observados (<span class="math inline">Y = y</span>), cuya función de densidad es <span class="math inline">f(y_i|\theta_i)</span>, y <span class="math inline">\theta_i</span> son desconocidos.</p>
+<p>En este enfoque, <span class="math inline">\theta_i \in \mathbb{R}^k</span> es un vector de parámetros considerada aleatorio, su espacio muestral es <span class="math inline">(\Theta,\mathcal F, P)</span>, y su función de densidad inicial es <span class="math inline">f(\theta)</span>.</p>
+<p>La función <span class="math inline">f(\theta)</span> resume todos los supuestos iniciales de los parámetros desconocidos, resumiendo la <code>incertidumbre</code> (<em>mide que tan incierto es el valor del parámetro para dichos datos</em>). El objetivo es actualizar la <code>incertidumbre</code> mediante la nueva información obtenida (<em>datos</em>) del fenómeno en estudio, y por el <em>teorema de Bayes</em>, esta se actualiza mediante la siguiente formula:</p>
+<p><span class="math display">f(\theta_i|y) = \frac{f(y|\theta_i)f(\theta_i)}{\int f(y|\theta_i)f(\theta_i)d \theta_i} \quad j = 1,2,\ldots,k.</span></p>
+<p>Donde:</p>
+<ul>
+<li><p>Bajo el supuesto de intercambiabilidad, <span class="math inline">f(y|\theta_i) = \prod_{j=1}^n f(y_j|\theta_i)</span>.</p></li>
+<li><p><span class="math inline">f(\theta_i|y)</span> es la posteriori de los parámetros (<code>incertidumbre</code> “mejorada”).</p></li>
+</ul>
+<div class="callout-note callout callout-style-default callout-captioned">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-caption-container flex-fill">
+Notar que:
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<ul>
+<li><p>La denisdad <span class="math inline">f(\theta_i|y) = f(\theta_i|Y=y)</span> esta condicionada a una cantidad fija (<span class="math inline">Y=y</span>), por lo tanto, la posterior no es aleatoria ni abstracta.</p></li>
+<li><p><span class="math inline">f(y) = \int f(y|\theta_i)f(\theta_i)d \theta_i</span> es la densidad marginal <em>observada</em> para <span class="math inline">Y</span>.</p></li>
+<li><p><span class="math inline">f(y)</span> es fija, conocida, y no depende de <span class="math inline">\theta_i</span>, por lo tanto, se modela como una constante <span class="math inline">k</span>.</p></li>
+</ul>
+</div>
+</div>
+<p>La ecuación anterior es muy complicada de manejar y usualmente se resume como:</p>
+<p><span class="math display">f(\theta_i|y) \propto f(y|\theta_i)f(\theta_i).</span> Donde <span class="math inline">\propto</span> representa la constante de proporcionalidad.</p>
+<section id="densidad-predictiva" class="level3">
+<h3 class="anchored" data-anchor-id="densidad-predictiva">Densidad Predictiva</h3>
+<p>Una cantidad muy importante es la función predictiva a posteriori del modelo<a href="#fn3" class="footnote-ref" id="fnref3" role="doc-noteref"><sup>3</sup></a>. Sea <span class="math inline">y^*</span> una observación nueva e independiente de la muestra <span class="math inline">y</span>, cuya función de densidad real es <span class="math inline">f_t(y^*)</span>. Esta <em>“nueva observación”</em> es desconocida para los datos y se considera aleatoria, el cual se puede cuantificar mediante la siguiente ecuación:</p>
+<p><span class="math display">f(Y^*|y) = \int f(Y^*|\theta_i)f(\theta_i|y) d\theta_i,</span> donde:</p>
+<ul>
+<li><p><span class="math inline">f(Y^*|y)</span> es la función predictiva a posteriori.</p></li>
+<li><p><span class="math inline">Y^*</span> es la variable aleatoria que cuantifica a <span class="math inline">y^*</span>.</p></li>
+<li><p><span class="math inline">f(\cdot|\theta_i):\mathbb R \to \mathbb R^+</span> para un <span class="math inline">\theta_i</span> fijo, es una función medible de <span class="math inline">Y^*</span>.</p></li>
+<li><p><span class="math inline">f(Y^*|\theta_i)</span> es una transformación de <span class="math inline">Y^*</span>; por lo tanto, es una cantidad aleatoria nueva.</p></li>
+</ul>
+<p>Esta densidad se puede interpretar como el valor esperado a posteriori de la función generadora de datos,</p>
+<p><span class="math display">f(Y^*|y) = E_{\theta|y}\left[f(Y^*|\theta_i)\right].</span></p>
+<p>La función predictiva es de vital importancia para realizar diagnóstico de las estimaciones obtenidas y para medir el ajuste de un modelo. El <code>ajuste</code> de un modelo se mide al comparar <span class="math inline">f(Y^*|\theta_i)</span> con su valor real <span class="math inline">f_t(y)</span>. En la práctica esta comparación tiene dos limitantes:</p>
+<ol type="1">
+<li><p>Cómo comparar funciones de densidad?</p></li>
+<li><p><span class="math inline">f_t(y)</span> siempre es desconocida.</p></li>
+</ol>
+<p>Estas limitantes se pueden sobrellevar, y de esos detalles hablaremos en las próximas secciones, por ahora, enfocarnos en la función a priori.</p>
+</section>
+</section>
+<section id="tipos-de-priors" class="level2">
+<h2 class="anchored" data-anchor-id="tipos-de-priors">Tipos de Priors</h2>
+<p>Según sea la función a priori definida, así serán las características de la función a posteriori. Por ejemplo, en un problema de optimización, estas densidades regularizan la verosimilitud de la muestra.</p>
+<p>Una correcta definición de la prior es importante para un análisis de datos objetivo e imparcial.</p>
+<p>En la actualidad existen diferentes elecciones para la prior, las mas comunes son:</p>
+<ul>
+<li><p>Priors dispersas,</p></li>
+<li><p>Priors Objetivas,</p></li>
+<li><p>Maximum entropy Priors,</p></li>
+<li><p>Prios débiles.</p></li>
+</ul>
+<section id="prioris-dispersas" class="level4">
+<h4 class="anchored" data-anchor-id="prioris-dispersas">Prioris dispersas</h4>
+<p>Este tipo de priors se caracterizan por ser distribuciones uniformes definidas en un subconjunto del espacio muestral <span class="math inline">\Theta</span> <em>“muy grande”</em>; <span class="citation" data-cites="gelman2013">A. Gelman et al. (<a href="#ref-gelman2013" role="doc-biblioref">2013</a>)</span>.</p>
+<p><span class="math display">
+f(\theta) \propto U(a-\varepsilon,a+\varepsilon), \ \varepsilon \to \infty.
+</span></p>
+<p><strong>Características</strong>:</p>
+<ul>
+<li><p>No proveen información externa.</p></li>
+<li><p>Son muy subjetivas.</p></li>
+<li><p>No exploran objetivamente el espacio muestral <span class="math inline">\Theta</span>.</p></li>
+</ul>
+</section>
+<section id="prioris-objetivas" class="level4">
+<h4 class="anchored" data-anchor-id="prioris-objetivas">Prioris objetivas</h4>
+<p>Este tipo de priors se conocen como <em>“no informativas”</em>, y se caracterizan por tratar de penalizar la verosimilitud mediante el criterio de información de Fisher; <span class="citation" data-cites="Miggon2014">Migon, Gamerman, and Louzada (<a href="#ref-Miggon2014" role="doc-biblioref">2014</a>)</span>.</p>
+<p><span class="math display">
+f(\theta) \propto |I(\theta)|^{1/2}.
+</span> <strong>Características</strong>:</p>
+<ul>
+<li><p>Son funciones de densidad impropias (No integran 1).</p></li>
+<li><p>Proveen información pese se llamadas no informativas.</p></li>
+<li><p>Son invariantes a transformaciones de <span class="math inline">\theta</span>.</p></li>
+</ul>
+</section>
+<section id="maximum-entropy-priors" class="level4">
+<h4 class="anchored" data-anchor-id="maximum-entropy-priors">Maximum entropy Priors</h4>
+<p>Este tipo de priors se conocen como <em>“priors de referencia”</em>, y el objetivo es elegir la prior que sea lo mas similar posible a un posterior de referencia elegida; <span class="citation" data-cites="Bernardo+Smith:1994">Bernardo and Smith (<a href="#ref-Bernardo+Smith:1994" role="doc-biblioref">1994</a>)</span>.</p>
+<p><span class="math display">
+f(\theta) \propto \arg \max_{f(\theta)} H(\theta | y),
+</span> donde,</p>
+<p><span class="math display">
+H(\theta | y) =-\int f(\theta|y)\log f(\theta|y)d\theta.
+</span></p>
+<p><strong>Características</strong>:</p>
+<ul>
+<li><p>Son muy complicadas de computar.</p></li>
+<li><p>Maximizan la selección de la posterior.</p></li>
+<li><p>Son muy informativas, pese a ser de la misma clase que las prioris objetivas.</p></li>
+</ul>
+</section>
+<section id="prioris-conjugadas" class="level4">
+<h4 class="anchored" data-anchor-id="prioris-conjugadas">Prioris conjugadas</h4>
+<p>Estas priors generan posteriors con forma analítica y que pertenecen a la familia exponencial, las primeras aplicaciones surgieron a partir de este tipo de distribuciones; <span class="citation" data-cites="degroot2012">DeGroot and Schervish (<a href="#ref-degroot2012" role="doc-biblioref">2012</a>)</span>.</p>
+<p><span class="math display">
+f(\theta), \ f(y | \theta) \in \mathcal F_\varepsilon, \to f(\theta|y) \in \mathcal F_\varepsilon.
+</span></p>
+<p><strong>Características</strong>:</p>
+<ul>
+<li><p>La posterior tiene solución analítica.</p></li>
+<li><p>Limitan la cantidad de modelos a utilizar.</p></li>
+<li><p>Garantizan un análisis objetivo de los datos, pero pueden ser muy informativas.</p></li>
+</ul>
+</section>
+<section id="prioris-débiles" class="level4">
+<h4 class="anchored" data-anchor-id="prioris-débiles">Prioris débiles:</h4>
+<p>No existe una regla, formula o método para seleccionar este tipo de priors, pero se basan en elegir distribuciones que no brinden mucha información y tengan propiedades que enriquecen el análisis de modelo o la estimación del mismo; <span class="citation" data-cites="BMCP2021">Martin, Kumar, and Lao (<a href="#ref-BMCP2021" role="doc-biblioref">2021</a>)</span>.</p>
+<p><strong>Características</strong>:</p>
+<ul>
+<li><p>proveen poca información sobre <span class="math inline">\theta</span>.</p></li>
+<li><p>regularizan la posterior.</p></li>
+<li><p>No tienen forma especifica, ni método de selección.</p></li>
+</ul>
+<p>Existen múltiples estudios para cada tipo de prior estudiando los beneficios de las posteriors en un modelo en especifico, por ejemplo ver <span class="citation" data-cites="fonseca2019">Fonseca et al. (<a href="#ref-fonseca2019" role="doc-biblioref">2019</a>)</span>. En la actualidad, existe una rama de inferencia denotada prior elicitation (<span class="citation" data-cites="Mikola-et-al:2021">Mikkola et al. (<a href="#ref-Mikola-et-al:2021" role="doc-biblioref">2021</a>)</span>) que definen algoritmos para seleccionar la mejor prior en una familia de funciones.</p>
+</section>
+</section>
+<section id="estimación-de-la-posterior" class="level2">
+<h2 class="anchored" data-anchor-id="estimación-de-la-posterior">Estimación de la posterior</h2>
+<p>En la actualidad existen muchos métodos para estimación de la posterior:</p>
+<ul>
+<li><p><strong>Monte Carlo Markov Chain (MCMC)</strong>: Gibbs Sampler, <span class="citation" data-cites="metropolis1953">Metropolis et al. (<a href="#ref-metropolis1953" role="doc-biblioref">1953</a>)</span> y Metropolis-Hastings, <span class="citation" data-cites="Hasting1970">Hastings (<a href="#ref-Hasting1970" role="doc-biblioref">1970</a>)</span>.</p></li>
+<li><p><strong>MCMC basados en gradientes</strong>. Hamiltonean Monte Carlo (HMC) y Metropolis Adaptative Lavengian algorithm (MALA), ver <span class="citation" data-cites="Duane1987">Duane (<a href="#ref-Duane1987" role="doc-biblioref">1987</a>)</span>, <span class="citation" data-cites="hoffman14">Hoffman and Gelman (<a href="#ref-hoffman14" role="doc-biblioref">2014</a>)</span>, y <span class="citation" data-cites="betancourt2017">Betancourt (<a href="#ref-betancourt2017" role="doc-biblioref">2017</a>)</span>.</p></li>
+<li><p><strong>Penalized Maximum Likelihood (P-MLE)</strong>: encontrar <span class="math inline">MAEP(\theta) = \arg \max f(\theta | y)</span>, el MAPE se aproxima con métodos de Quasi-Newton, en particular L-BFGS.</p></li>
+<li><p><strong>Approximated Bayesian Computation (ABC):</strong> Rejection Sampler.</p></li>
+<li><p><strong>Variational Inference (VI)</strong>: Stochastic gradient Descent.</p></li>
+</ul>
+<p>En la mayoría de los métodos de aproximación se obtiene una muestra <span class="math inline">\Theta_P = \{\theta_1,\theta_2,\ldots,\theta_S\}</span> de la posterior, que se puede utilizar para aproximar los <em>estimadores puntuales</em> e <em>intervalos de credibilidad</em>.</p>
+<section id="estimadores-puntuales" class="level3">
+<h3 class="anchored" data-anchor-id="estimadores-puntuales">Estimadores puntuales</h3>
+<p>Un estimador puntual es el valor que minimiza una función de perdida de la posteriori, el estimador mas común es la Media a posteriori:</p>
+<p><span class="math display">
+\hat \theta_1 = E[\theta | y] \approx \frac{1}{m}\sum_i^m \theta_k.
+</span></p>
+<p>Otro estimador muy utilizado es la mediana a posteriori, es bastante popular en posteriors con colas pesadas.</p>
+<p><span class="math display">
+\hat \theta_2 = \text{median}(\theta | y) \approx \hat q(\Theta_P)_{0.5}.
+</span></p>
+<p>El máximo a posterioir (MAP) es la moda de la posterior y solo se obtiene con los métodos penalized MLE y VI.</p>
+<p><span class="math display">
+\hat \theta_3 = \max f(\theta | y).
+</span></p>
+</section>
+<section id="incertidumbre-de-los-estimadores" class="level3">
+<h3 class="anchored" data-anchor-id="incertidumbre-de-los-estimadores">Incertidumbre de los estimadores</h3>
+<p>La posterior del parámetro es una medida de incertidumbre en si misma, ventaja principal por la cual se prefiere <em>inferencia Bayesiana</em> sobre la <em>frecuentista</em>.</p>
+<p>La forma estándar de resumir la incertidumbre es mediante los <em>intervalos de credibilidad</em>, estos se pueden aproximar mediante los quantiles muestrales <span class="math inline">q_\alpha</span> de <span class="math inline">\Theta_P</span><a href="#fn4" class="footnote-ref" id="fnref4" role="doc-noteref"><sup>4</sup></a>.</p>
+<p><span class="math display">IC_{(1-\alpha)*100\%} = [\hat q(\Theta_P)_{\alpha/2}, \hat q(\Theta_P)_{1-\alpha/2}]</span></p>
+</section>
+</section>
+<section id="posterior-predictive-checks" class="level2">
+<h2 class="anchored" data-anchor-id="posterior-predictive-checks">Posterior Predictive checks</h2>
+<p>Estos métodos son análogos al análisis de los residuos en inferencia clásica. La idea es comparar la función predictiva <span class="math inline">f(y^*|y)</span> con los datos obtenidos <span class="math inline">y</span>. En la mayoría de los casos, <span class="math inline">f(y^*|y))</span> se aproxima con <code>Monte-Carlo</code>.</p>
+<p><span class="math display">\hat f(y^*|y)  = E_{\theta|y} [f(y^*|\theta)] \approx \frac{1}{m}\sum_{k=1}^m f(y^*|\theta_k)</span></p>
+<p>Por lo tanto, se puede obtener una muestra de la predictiva para cada uno de los <span class="math inline">y_i</span> observado de la forma:</p>
+<p><span class="math display">\hat y^{(j)}_i \sim \frac{1}{m}\sum_{k=1}^m f(y^*|\theta_k), \quad f(\cdot|\theta) \text{ conocida}.</span></p>
+<p>Donde <span class="math inline">y^{(1)}_i, y^{(2)}_i, \ldots, y^{(m)}_i</span> es una muestra para <span class="math inline">f(y_i^*|y)</span>.</p>
+<p>Finalmente, los errores del modelo se estiman:</p>
+<p><span class="math display">\hat \varepsilon^{(j)}_i \approx y_i - y^{(k)}_i.</span></p>
+<section id="log-verosimilitud" class="level3">
+<h3 class="anchored" data-anchor-id="log-verosimilitud">log-Verosimilitud</h3>
+<p>Un estimador muy importante para la selección de modelos es la matriz de log-verosimilitudes, esta se estima por métodos de <code>Monte-Carlo</code> usando una muestra de la posterior <span class="math inline">\Theta_P</span>, de la siguiente forma:</p>
+<p><span class="math display">\log f(y|\theta) = [\log f(y_i|\theta_j)] \in \mathbb R^{S \times n},</span> Donde <span class="math inline">i = 1,2,\ldots,n</span> y <span class="math inline">j = 1,2,\ldots,S</span>, para el tamaño de muestra <span class="math inline">n</span> y número de simulaciones de la posterior <span class="math inline">S</span>. A partir de las matrices de log-verosimilitudes se puede estimar una muestra a posterior de la log-likelihood del modelo a partir de la siguiente ecuación:</p>
+<p><span class="math display">\text{log-lik}(M)_j = -\sum_{i=1}^n \log f(y_i | \theta_j).</span> La muestra obtenida, estima la distribución a posteriori del modelo <span class="math inline">\text{log-lik}(M)</span>. Estos valores pueden utilizarse para comparación preliminar de modelos, y se elige el modelo con criterio menor.</p>
+</section>
+</section>
+<section id="selección-de-modelos" class="level2">
+<h2 class="anchored" data-anchor-id="selección-de-modelos">Selección de modelos</h2>
+<p>Seleccionar el modelo adecuado de los datos de un conjunto de modelos <span class="math inline">M_1,M_2, \ldots, M_k</span> es un problema muy complicado, debido a los altos costos computacionales y complejidad de los algoritmos. En la actualidad los métodos más utilizados son:</p>
+<ul>
+<li><p>Factor de Bayes</p></li>
+<li><p>Watanabe-Akaike Information Criteria (WAIC).</p></li>
+<li><p>Expected log predictive density (elpd).</p></li>
+</ul>
+<section id="factores-de-bayes" class="level4">
+<h4 class="anchored" data-anchor-id="factores-de-bayes">Factores de Bayes</h4>
+<p>Los factores de Bayes, fueron propuestos por Jeffrey (<a href="">1960</a>) y re-interpretados por <span class="citation" data-cites="Kass1995">Kass and Raftery (<a href="#ref-Kass1995" role="doc-biblioref">1995</a>)</span> para selección de modelos. Los factores de Bayes se basan en comparar las posteriors de los modelos definidos sobre los datos:</p>
+<p><span class="math display">f(M_i |y) \propto f(y | M_i)f(M_i),</span> Donde <span class="math inline">f(y | M_i) = f_{M_i}(y)</span> es la verosimilitud marginal de los datos, y <span class="math inline">f(M_i)</span> es la distribución a priori del modelo, o su importancia. Por lo tanto, el factor de Bayes es:</p>
+<p><span class="math display">
+FB = \frac{f(M_i|y)}{f(M_j |y)} \propto \frac{f_{M_i}(y)f(M_i)}{f_{M_j}(y)f(M_j)},
+</span></p>
+<p>En la práctica no tenemos importancia o favoritismo hacia un modelo entonces elegimos las priors iguales <span class="math inline">f(M_i) = f(M_j)</span>. Por lo tanto, el factor de Bayes es equivalente a la razón de verosimilitudes marginales.</p>
+<p><span class="math display">FB = \frac{f_{M_i}(y)}{f_{M_j}(y)}.</span></p>
+<p>La verosimilitud marginal de los datos se puede aproximar con un método de <code>Monte-Carlo</code> de la siguiente forma:</p>
+<p><span class="math display">
+f(y) = \int f(y|\theta)f(\theta)d \theta \approx \sum_{k=1}^mf(y|\theta_k), \quad \theta_k \sim f(\theta).
+</span></p>
+<p>Observaciones:</p>
+<ul>
+<li><p>El Factor de Bayes es sensible a modelos con priors no informativas.</p></li>
+<li><p>Muy complicado de estimar, y los algoritmos son inestables.</p></li>
+<li><p>Es perfecto para encontrar el modelo real.</p></li>
+</ul>
+<p>Aproximar las verosimilitudes marginales con <code>Monte Carlo</code> es muy ineficiente e inestable numéricamente, otros algoritmos utilizados es <code>muestreo por importancia</code> y el algoritmo de <code>Bridge-Sampling</code>; <span class="citation" data-cites="gronau2017">Gronau et al. (<a href="#ref-gronau2017" role="doc-biblioref">2017</a>)</span>.</p>
+</section>
+<section id="expected-log-predictive-density" class="level4">
+<h4 class="anchored" data-anchor-id="expected-log-predictive-density">Expected log predictive density</h4>
+<p>La elpd es una divergencia entre el modelo ajustado y la densidad real de los datos que se calcula mediante la siguiente ecuación:</p>
+<p><span class="math display">\text{elpd}(M_k|y) = - \int\log f(y^*|y) f_t(y)dy,</span> Esta medida se puede aproximar usando un método de <code>Monte-Carlo</code> mediante la siguiente ecuación:</p>
+<p><span class="math display">elpd(M_k|y) \approx - \sum_{i=1}^m\log f(y_i^*|y_i).</span></p>
+<p>El mayor problema problema es que <span class="math inline">\log f(y_i^*|y_i)</span> es desconocida y se calcula a partir de la predictiva:</p>
+<p><span class="math display">f(y_i^*|y_i) = \int f(y_i^*|\theta)f(\theta|y) d\theta.</span></p>
+<p><span class="citation" data-cites="vehtari2016">Vehtari et al. (<a href="#ref-vehtari2016" role="doc-biblioref">2015</a>)</span> proponen hacer la estimación de la predictiva utilizando validación cruzada, cuando la forma de la predictiva es proporcional a la verosimilitud:</p>
+<p><span class="math display">f(y_i|y_{-i}) \approx \frac{1}{\frac{1}{S}\sum_{s=1}^S[f(y_i|\theta_s)]^{-1}},</span></p>
+<p>donde <span class="math inline">\theta_1,\theta_2,\ldots,\theta_S</span> es una muestra de la posterior <span class="math inline">\Theta_P</span>; <span class="math inline">y_{-i}</span> representa el vector original de los datos quitando la observación <span class="math inline">y_i</span>, y <span class="math inline">f(y_i|y_{-i})</span> es la predictiva para <span class="math inline">y_i</span> cuando asumimos que esta es desconocida. Por lo tanto, la elpd se aproxima con</p>
+<p><span class="math display">elpd(M_k|y) \approx - \sum_{i=1}^n\log \left[ \frac{1}{\frac{1}{S}\sum_{s=1}^S[f(y_i|\theta_s)]^{-1}} \right]</span></p>
+<p>El mayor problema de esta aproximación es que es muy inestable numéricamente, mucho mayor que las obtenidas en el factor de Bayes, y <span class="citation" data-cites="vehtari2016">Vehtari et al. (<a href="#ref-vehtari2016" role="doc-biblioref">2015</a>)</span> propone resolver esta aproximación con muestreo por importancia usando una distribución generalizada de Pareto.</p>
+<p>Observaciones:</p>
+<ul>
+<li><p>Elige al modelo que más se acerque a la función real de los datos (<span class="math inline">f_t</span> <em>desconocida</em>).</p></li>
+<li><p>Su estimación es con remuestreo LOO-CV y es sensible a perturbaciones o malos ajustes.</p></li>
+<li><p>Elige al modelo que predice mejor.</p></li>
+</ul>
+</section>
+<section id="watanabe-akaike-information-criteria" class="level4">
+<h4 class="anchored" data-anchor-id="watanabe-akaike-information-criteria">Watanabe-Akaike Information Criteria</h4>
+<p>El WAIC es un criterio de información mayormente conocido como Widely Applicable information criteria, que penalización dela log-predictiva del modelo es mediante su segundo momento.</p>
+<p><span class="math display">WAIC = -E[\log f(y^*|y)] -n V[\log f(y^*|y)]</span> El criterio de información de Watanabe es asintótico al valor obtenido por la <span class="math inline">elpd</span>, por lo tanto, puede ser aproximado con validación cruzada.</p>
+<p>Observaciones:</p>
+<ul>
+<li><p>se elige el modelo con menor criterio de información.</p></li>
+<li><p>Se puede estimar con métodos de <code>Monte-Carlo</code>.</p></li>
+<li><p>Problemático para modelos muy similares</p></li>
+</ul>
+</section>
+</section>
+<section id="referencias" class="level2">
+
+
+
+
+</section>
+
+
+<div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" role="doc-bibliography"><h2 class="anchored quarto-appendix-heading">Referencias</h2><div id="refs" class="references csl-bib-body hanging-indent" role="doc-bibliography">
+<div id="ref-Bernardo+Smith:1994" class="csl-entry" role="doc-biblioentry">
+Bernardo, José M., and Adrian F. M. Smith. 1994. <em>Bayesian Theory</em>. John Wiley &amp; Sons.
+</div>
+<div id="ref-betancourt2017" class="csl-entry" role="doc-biblioentry">
+Betancourt, Michael. 2017. <span>“A Conceptual Introduction to Hamiltonian Monte Carlo.”</span> <a href="https://arxiv.org/abs/1701.02434">https://arxiv.org/abs/1701.02434</a>.
+</div>
+<div id="ref-degroot2012" class="csl-entry" role="doc-biblioentry">
+DeGroot, M. H., and M. J. Schervish. 2012. <em>Probability and Statistics</em>. Addison-Wesley. <a href="https://books.google.es/books?id=4TlEPgAACAAJ">https://books.google.es/books?id=4TlEPgAACAAJ</a>.
+</div>
+<div id="ref-Duane1987" class="csl-entry" role="doc-biblioentry">
+Duane, et al., S. 1987. <span>“Hybrid Monte Carlo.”</span> <em>Physics Letters B</em> 95 (2): 216–22. https://doi.org/<a href="https://doi.org/10.1016/0370-2693(87)91197-X&quot;">https://doi.org/10.1016/0370-2693(87)91197-X"</a>.
+</div>
+<div id="ref-fonseca2019" class="csl-entry" role="doc-biblioentry">
+Fonseca, T. C. O., V. S. Cerqueira, H. S. Migon, and C. A. C. Torres. 2019. <span>“The Effects of Degrees of Freedom Estimation in the Asymmetric GARCH Model with Student-t Innovations.”</span> <a href="https://arxiv.org/abs/1910.01398">https://arxiv.org/abs/1910.01398</a>.
+</div>
+<div id="ref-gelman2013" class="csl-entry" role="doc-biblioentry">
+Gelman, A., J. B. Carlin, H. S. Stern, D. B. Dunson, A. Vehtari, and D. B. Rubin. 2013. <em>Bayesian Data Analysis, Third Edition</em>. Chapman &amp; Hall/CRC Texts in Statistical Science. Taylor &amp; Francis. <a href="https://books.google.nl/books?id=ZXL6AQAAQBAJ">https://books.google.nl/books?id=ZXL6AQAAQBAJ</a>.
+</div>
+<div id="ref-gelman2020bayesian" class="csl-entry" role="doc-biblioentry">
+Gelman, Andrew, Aki Vehtari, Daniel Simpson, Charles C. Margossian, Bob Carpenter, Yuling Yao, Lauren Kennedy, Jonah Gabry, Paul-Christian Bürkner, and Martin Modrák. 2020. <span>“Bayesian Workflow.”</span> <a href="https://arxiv.org/abs/2011.01808">https://arxiv.org/abs/2011.01808</a>.
+</div>
+<div id="ref-gronau2017" class="csl-entry" role="doc-biblioentry">
+Gronau, Quentin F., Alexandra Sarafoglou, Dora Matzke, Alexander Ly, Udo Boehm, Maarten Marsman, David S. Leslie, Jonathan J. Forster, Eric-Jan Wagenmakers, and Helen Steingroever. 2017. <span>“A Tutorial on Bridge Sampling.”</span> <a href="https://arxiv.org/abs/1703.05984">https://arxiv.org/abs/1703.05984</a>.
+</div>
+<div id="ref-Hasting1970" class="csl-entry" role="doc-biblioentry">
+Hastings, W. K. 1970. <span>“Monte Carlo Sampling Methods Using Markov Chains and Their Applications.”</span> <em>Biometrika</em> 57 (1): 97–109. <a href="http://www.jstor.org/stable/2334940">http://www.jstor.org/stable/2334940</a>.
+</div>
+<div id="ref-hoffman14" class="csl-entry" role="doc-biblioentry">
+Hoffman, Matthew D., and Andrew Gelman. 2014. <span>“The No-u-Turn Sampler: Adaptively Setting Path Lengths in Hamiltonian Monte Carlo.”</span> <em>Journal of Machine Learning Research</em> 15: 1593–623. <a href="http://jmlr.org/papers/v15/hoffman14a.html">http://jmlr.org/papers/v15/hoffman14a.html</a>.
+</div>
+<div id="ref-Kass1995" class="csl-entry" role="doc-biblioentry">
+Kass, Robert E., and Adrian E. Raftery. 1995. <span>“Bayes Factors.”</span> <em>Journal of the American Statistical Association</em> 90 (430): 773–95. <a href="https://doi.org/10.1080/01621459.1995.10476572">https://doi.org/10.1080/01621459.1995.10476572</a>.
+</div>
+<div id="ref-BMCP2021" class="csl-entry" role="doc-biblioentry">
+Martin, Osvaldo A., Ravin Kumar, and Junpeng Lao. 2021. <em><span class="nocase">Bayesian Modeling and Computation in Python</span></em>. <span>Boca Raton</span>.
+</div>
+<div id="ref-metropolis1953" class="csl-entry" role="doc-biblioentry">
+Metropolis, Nicholas, Arianna W. Rosenbluth, Marshall N. Rosenbluth, Augusta H. Teller, and Edward Teller. 1953. <span>“Equation of State Calculations by Fast Computing Machines.”</span> <em>The Journal of Chemical Physics</em> 21 (6): 1087–92. <a href="https://doi.org/10.1063/1.1699114">https://doi.org/10.1063/1.1699114</a>.
+</div>
+<div id="ref-Miggon2014" class="csl-entry" role="doc-biblioentry">
+Migon, Helio, Dani Gamerman, and Francisco Louzada. 2014. <em>Statistical Inference. An Integrated Approach</em>. Chapman and Hall CRC Texts in Statistical Science. Chapman; Hall.
+</div>
+<div id="ref-Mikola-et-al:2021" class="csl-entry" role="doc-biblioentry">
+Mikkola, Petrus, Osvaldo A. Martin, Suyog Chandramouli, Marcelo Hartmann, Oriol Abril Pla, Owen Thomas, Henri Pesonen, et al. 2021. <span>“Prior Knowledge Elicitation: The Past, Present, and Future.”</span> arXiv. <a href="https://doi.org/10.48550/ARXIV.2112.01380">https://doi.org/10.48550/ARXIV.2112.01380</a>.
+</div>
+<div id="ref-vehtari2016" class="csl-entry" role="doc-biblioentry">
+Vehtari, Aki, Daniel Simpson, Andrew Gelman, Yuling Yao, and Jonah Gabry. 2015. <span>“Pareto Smoothed Importance Sampling.”</span> <a href="https://arxiv.org/abs/1507.02646">https://arxiv.org/abs/1507.02646</a>.
+</div>
+</div></section><section id="footnotes" class="footnotes footnotes-end-of-document" role="doc-endnotes"><h2 class="anchored quarto-appendix-heading">Footnotes</h2>
+
+<ol>
+<li id="fn1"><p>Estamos abusando de la notación, en este caso el objeto Y es una función aleatoria de dimensión d arbitraria; si d &gt; 1 entonces Y es un vector aleatorio.<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn2"><p>Decimos que Y1 y Y2 son intercambiables si f(Y1,Y2) = f(Y2,Y1).<a href="#fnref2" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn3"><p>Posterior predictive density<a href="#fnref3" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn4"><p>Si las posteriors son <em>uni-modales</em>, entonces los Intervalos de credibilidad son <code>High posterior density</code>.<a href="#fnref4" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+</ol>
+</section></div></main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const disableStylesheet = (stylesheets) => {
+    for (let i=0; i < stylesheets.length; i++) {
+      const stylesheet = stylesheets[i];
+      stylesheet.rel = 'prefetch';
+    }
+  }
+  const enableStylesheet = (stylesheets) => {
+    for (let i=0; i < stylesheets.length; i++) {
+      const stylesheet = stylesheets[i];
+      stylesheet.rel = 'stylesheet';
+    }
+  }
+  const manageTransitions = (selector, allowTransitions) => {
+    const els = window.document.querySelectorAll(selector);
+    for (let i=0; i < els.length; i++) {
+      const el = els[i];
+      if (allowTransitions) {
+        el.classList.remove('notransition');
+      } else {
+        el.classList.add('notransition');
+      }
+    }
+  }
+  const toggleColorMode = (alternate) => {
+    // Switch the stylesheets
+    const alternateStylesheets = window.document.querySelectorAll('link.quarto-color-scheme.quarto-color-alternate');
+    manageTransitions('#quarto-margin-sidebar .nav-link', false);
+    if (alternate) {
+      enableStylesheet(alternateStylesheets);
+      for (const sheetNode of alternateStylesheets) {
+        if (sheetNode.id === "quarto-bootstrap") {
+          toggleBodyColorMode(sheetNode);
+        }
+      }
+    } else {
+      disableStylesheet(alternateStylesheets);
+      toggleBodyColorPrimary();
+    }
+    manageTransitions('#quarto-margin-sidebar .nav-link', true);
+    // Switch the toggles
+    const toggles = window.document.querySelectorAll('.quarto-color-scheme-toggle');
+    for (let i=0; i < toggles.length; i++) {
+      const toggle = toggles[i];
+      if (toggle) {
+        if (alternate) {
+          toggle.classList.add("alternate");     
+        } else {
+          toggle.classList.remove("alternate");
+        }
+      }
+    }
+    // Hack to workaround the fact that safari doesn't
+    // properly recolor the scrollbar when toggling (#1455)
+    if (navigator.userAgent.indexOf('Safari') > 0 && navigator.userAgent.indexOf('Chrome') == -1) {
+      manageTransitions("body", false);
+      window.scrollTo(0, 1);
+      setTimeout(() => {
+        window.scrollTo(0, 0);
+        manageTransitions("body", true);
+      }, 40);  
+    }
+  }
+  const isFileUrl = () => { 
+    return window.location.protocol === 'file:';
+  }
+  const hasAlternateSentinel = () => {  
+    let styleSentinel = getColorSchemeSentinel();
+    if (styleSentinel !== null) {
+      return styleSentinel === "alternate";
+    } else {
+      return false;
+    }
+  }
+  const setStyleSentinel = (alternate) => {
+    const value = alternate ? "alternate" : "default";
+    if (!isFileUrl()) {
+      window.localStorage.setItem("quarto-color-scheme", value);
+    } else {
+      localAlternateSentinel = value;
+    }
+  }
+  const getColorSchemeSentinel = () => {
+    if (!isFileUrl()) {
+      const storageValue = window.localStorage.getItem("quarto-color-scheme");
+      return storageValue != null ? storageValue : localAlternateSentinel;
+    } else {
+      return localAlternateSentinel;
+    }
+  }
+  let localAlternateSentinel = 'default';
+  // Dark / light mode switch
+  window.quartoToggleColorScheme = () => {
+    // Read the current dark / light value 
+    let toAlternate = !hasAlternateSentinel();
+    toggleColorMode(toAlternate);
+    setStyleSentinel(toAlternate);
+  };
+  // Ensure there is a toggle, if there isn't float one in the top right
+  if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
+    const a = window.document.createElement('a');
+    a.classList.add('top-right');
+    a.classList.add('quarto-color-scheme-toggle');
+    a.href = "";
+    a.onclick = function() { try { window.quartoToggleColorScheme(); } catch {} return false; };
+    const i = window.document.createElement("i");
+    i.classList.add('bi');
+    a.appendChild(i);
+    window.document.body.appendChild(a);
+  }
+  // Switch to dark mode if need be
+  if (hasAlternateSentinel()) {
+    toggleColorMode(true);
+  } 
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    target: function(trigger) {
+      return trigger.previousElementSibling;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    setTimeout(function() {
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const cites = ref.parentNode.getAttribute('data-cites').split(' ');
+    tippyHover(ref, function() {
+      var popup = window.document.createElement('div');
+      cites.forEach(function(cite) {
+        var citeDiv = window.document.createElement('div');
+        citeDiv.classList.add('hanging-indent');
+        citeDiv.classList.add('csl-entry');
+        var biblioDiv = window.document.getElementById('ref-' + cite);
+        if (biblioDiv) {
+          citeDiv.innerHTML = biblioDiv.innerHTML;
+        }
+        popup.appendChild(citeDiv);
+      });
+      return popup.innerHTML;
+    });
+  }
+});
+</script>
+</div> <!-- /content -->
+
+
+
+<script src="../../../site_libs/quarto-html/zenscroll-min.js"></script>
+</body></html>

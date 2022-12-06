@@ -239,8 +239,8 @@ div.csl-indent {
 </section>
 <section id="estimación-de-los-parámetros" class="level2">
 <h2 class="anchored" data-anchor-id="estimación-de-los-parámetros">Estimación de los parámetros</h2>
-<p>El método de optimización más popular en GLMs es <a href="">Máxima Verosimilitud</a> que consiste en optimizar la log-verosimilitud, o simplemente resolver la función de score.</p>
-<p><span class="math display">U(y;\theta) = \frac{\partial}{\partial \theta} l(y;\theta) = 0.</span> Generalmente resolver <span class="math inline">U</span> implica resolver un sistema de ecuaciones no lineales, y al inicio el método más utilizado es el algoritmo de Newton. En la actualidad dicho algoritmo a evolucionado a un <a href="https://en.wikipedia.org/wiki/Limited-memory_BFGS">Limited Memory Broyden–Fletcher–Goldfarb–Shanno algorithm</a>. El algoritmo L-BFGS es un método de Quasi-Newton que</p>
+<p>El método de optimización más popular en GLMs es <a href="https://en.wikipedia.org/wiki/Maximum_likelihood_estimation#:~:text=In%20statistics%2C%20maximum%20likelihood%20estimation,observed%20data%20is%20most%20probable.">Máxima Verosimilitud</a> que consiste en optimizar la log-verosimilitud, o simplemente resolver la función de score.</p>
+<p><span class="math display">U(y;\theta) = \frac{\partial}{\partial \theta} l(y;\theta) = 0.</span> Generalmente resolver <span class="math inline">U</span> implica resolver un sistema de ecuaciones no lineales, y al inicio el método más utilizado es el algoritmo de Newton. En la actualidad dicho algoritmo a evolucionado a un <a href="https://en.wikipedia.org/wiki/Limited-memory_BFGS">Limited Memory Broyden–Fletcher–Goldfarb–Shannon algorithm</a>. El algoritmo L-BFGS es un método de Quasi-Newton que</p>
 <ol type="1">
 <li><p>Aproxima la matriz Jacobiana usando el método de Broyden, y</p></li>
 <li><p>Aplica el algoritmo de Fletcher para corregir por estabilidad la aproximación de Broyden.</p></li>

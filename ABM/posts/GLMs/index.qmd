@@ -46,10 +46,10 @@ $$l(y;\theta) = \sum_{i=1}^n y_i b(\theta_i) +\sum_{i=1}^nc(\theta_i) + \sum_{i=
 
 ## Estimación de los parámetros
 
-El método de optimización más popular en GLMs es [Máxima Verosimilitud]() que consiste en optimizar la log-verosimilitud, o simplemente resolver  la función de score.
+El método de optimización más popular en GLMs es [Máxima Verosimilitud](https://en.wikipedia.org/wiki/Maximum_likelihood_estimation#:~:text=In%20statistics%2C%20maximum%20likelihood%20estimation,observed%20data%20is%20most%20probable.) que consiste en optimizar la log-verosimilitud, o simplemente resolver  la función de score.
 
 $$U(y;\theta) = \frac{\partial}{\partial \theta} l(y;\theta) = 0.$$
-Generalmente resolver $U$ implica resolver un sistema de ecuaciones no lineales, y al inicio el método más utilizado es el algoritmo de Newton. En la actualidad dicho algoritmo a evolucionado a un [Limited Memory Broyden–Fletcher–Goldfarb–Shanno algorithm](https://en.wikipedia.org/wiki/Limited-memory_BFGS). El algoritmo L-BFGS es un método de Quasi-Newton que 
+Generalmente resolver $U$ implica resolver un sistema de ecuaciones no lineales, y al inicio el método más utilizado es el algoritmo de Newton. En la actualidad dicho algoritmo a evolucionado a un [Limited Memory Broyden–Fletcher–Goldfarb–Shannon algorithm](https://en.wikipedia.org/wiki/Limited-memory_BFGS). El algoritmo L-BFGS es un método de Quasi-Newton que 
 
   1. Aproxima la matriz Jacobiana usando el método de Broyden, y 
   
