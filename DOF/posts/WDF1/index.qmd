@@ -8,29 +8,29 @@ about:
   template: marquee
 ---
 
-A story of the my last month.
+A story of the my last October
 
 Hello everyone! My name is Asael Alonzo Matamoros, and I just came back home (*Honduras*). After 2 years of living in Finland, I got depression, unfinished business, and a will to write about statistics (*and obviously about the stupid Colombian telenovela I call my life*). 
 
-It has been a month since I returned. The adaptation has been a shit show, but everything is not lost. Some things turn out to be good or even enjoyable. For example, I am attending three weddings, all of whom are from the same group of friends. Yes! I am the "single one, and out of this minor detail, I am happy to celebrate these significant events with them. And obviously, I can't forget that now I live with five incredible cutenesses that are always happy to see me. Please check them out in the following picture.
+It has been a month since I returned. The adaptation has been a shit show, but everything is not lost. Some things turned out to be good or even enjoyable. For example, I am attending three weddings, all of which are for people from the same group of friends.. Yes! I am the "single one of all my friends, and despite of this minor detail, I am happy to celebrate these significant events with them. And obviously, I can't forget that now I live with five incredible cutenesses that are always happy to see me. Please check them out in the following picture.
 
 ![](doggies.jpeg)
 
-So, now I want to answer the critical question: **What the fuck is going on with my life?!** Well, I don't know, but who really does? A good answer might be that I am recovering from some exhausting experiences that came out this year. Out of the drama, I want to share three exciting projects with you (*Yes, you! The person who might be reading this, and I gotta say I love you!*).
+So, now I want to answer the critical question: **What the fuck is going on with my life?!** Well, I don't know, but who really does? A good answer might be that I am recovering from some exhausting experiences that came to happen this year. Out of the drama, I want to share three exciting projects with you (*Yes, you! The person who might be reading this, and I gotta say I love you!*).
 
   1. I am finishing my research in Bayesian ARIMA models for time-series analysis.
   
-  2. Monchys, Juan, and I created a meeting group called "Beer and Science," where we do nerd talks about stories, research, and science. 
+  2. Monchys, Juan and I created a meeting group called "Beer and Science," where we do nerd talks about stories, research, and science. 
   
   3. I have a Google Season of Docs contract with ArviZ.
   
-I can't talk about my research now, but let's talk about Beer; in the end, it is more fun.
+I can't talk about my research now, but let's talk about Beer; after all, it is more fun.
 
 ## Beer and Science
 
-One of my guilty pleasures is watching way too many YouTube videos. I love those informative (*nerdy*) vlogs in which people talk about their research, technology, or knowledge field. Let's be honest; it is fun to watch thirteen-minute videos explaining how Einstein came up with the relativity theory idea. And if not, I like it anyway, and IDGAF about your opinion! 
+One of my guilty pleasures is watching way too many YouTube videos. I love those informative (*nerdy*) vlogs in which people talk about their research, technology, or field of knowledge. Let's be honest; it is fun to watch thirteen-minute videos explaining how Einstein came up with the relativity theory idea. And if not, I like it anyway, and IDGAF about your opinion! 
 
-The project's central idea is to share some content about what we are doing (*We try to do research, but we suck at it*) and motivate others in our work or at least to read a book. Not to forget that I am a materialistic fuck, and I love to hear public praise like a stupid diva (*a considerable motivation for myself*). So, after a minimal amount of consideration, I contacted my friend Monchys who has vast experience drinking (*I mean researching*) and discussed the idea with him. Look at us now! We got some shit done, and eureka! "Beer and science" was born!
+The project's central idea is to share some content about what we are doing (*We try to do research, but we suck at it*) and motivate others in our work or at least to read a book. Not to forget that I am a narcissist fuck, and I love to hear public praise like a stupid diva (*a considerable motivation for myself*). So, after a minimal amount of consideration, I contacted my friend Monchys who has vast experience drinking (*I mean researching*) and discussed the idea with him. Look at us now! We got some shit done, and eureka! "Beer and science" was born!
 
 ![](BnS.jpeg)
 
@@ -38,6 +38,6 @@ Our first event was "La radiación de Curie," where we wanted to talk about radi
 
 ![](Curie.jpeg)
 
-The event was a relative success (*let's agree that 22  persons attending the event were a success*), and we decided to make a second round. I hope we can agree on the following topic (*spoilers alert, the next topic might be "Intelligence"*). You are all invited, and I hope to see you around so we can have a funny nerd talk about science (*and, of course, get drunk together*).
+The event was a relative success (*let's agree that 22  persons attending the event is a success*), and we decided to make a second round. I hope we can agree on the following topic (*spoiler alert, the next topic might be "Intelligence"*). You are all invited, and I hope to see you around so we can have a funny nerd talk about science (*and, of course, get drunk together*).
 
 Seriously! If you are interested in our event, please subscribe for free [here](https://www.meetup.com/beer-science-hn/).
