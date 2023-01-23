@@ -195,7 +195,7 @@ rstanarm::pp_check(bm3)+labs(title = "Posterior predictive cheks, M3-GAM",
 ```{r}
 #| label: fig-nl
 #| fig-cap: "Efectos marginales no lineales. Estos graficos presentan las relacionnes no lineales de las variables designadas con los datos."
-plot_nonlinear(bm3)
+rstanarm::plot_nonlinear(bm3)
 ```
 
 ## Leave-One-Out-Cross-Validation

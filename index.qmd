@@ -9,6 +9,8 @@ Hello, I'm Asael, a statistician who programs in R, loves-hates Python, plays to
 
 **Important:** If you are a developer, R fanatic, or statistician, please star my [bayesforecast package](https://github.com/asael697/bayesforecast).
 
+**Important 2:** If you are taking the MM-401 class, please download the class' [cheatsheet](CS401.pdf) bt pressing the previous link.
+
 ## Asael, an attempt at website/Blogging, again?! 
 
 Yes! If you are reading me now, you might notice that I need practice in my writing, so I am doing this website for three different purposes:
