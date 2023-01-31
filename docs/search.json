@@ -109,7 +109,7 @@
     "href": "ABM/posts/ABR/index.html",
     "title": "Applied Bayesian Modeling",
     "section": "",
-    "text": "Hola a todos, sean bienvenidos a mi blog en español: “Applied Bayesian modeling.” Pese su nombre en inglés, este blog se enfoca en promover los métodos Bayesianos para el análisis de datos, que en los últimos años se han vuelto muy populares debido a su alta capacidad predictiva y la facilidad de capturar la incertidumbre de los datos. Cada post introduce varios conceptos y modelos estadísticos, presentando el análisis de un conjunto de datos real. Ademas, presentamos la implementación de los modelos en diferentes lenguajes de programación como R, Python y Julia, usando diferentes librerías como Stan, PyMC y Turing."
+    "text": "Introducción al modelamiento Bayesiano.\nHola a todos, sean bienvenidos a mi blog en español: “Applied Bayesian modeling.” Pese su nombre en inglés, este blog se enfoca en promover los métodos Bayesianos para el análisis de datos, que en los últimos años se han vuelto muy populares debido a su alta capacidad predictiva y la facilidad de capturar la incertidumbre de los datos. Cada post introduce varios conceptos y modelos estadísticos, presentando el análisis de un conjunto de datos real. Ademas, presentamos la implementación de los modelos en diferentes lenguajes de programación como R, Python y Julia, usando diferentes librerías como Stan, PyMC y Turing."
   },
   {
     "objectID": "ABM/posts/ABR/index.html#contenido",

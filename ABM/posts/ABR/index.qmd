@@ -9,6 +9,8 @@ about:
   template: marquee
 ---
 
+Introducción al modelamiento Bayesiano.
+
 Hola a todos, sean bienvenidos a  mi blog en español: "*Applied Bayesian modeling.*" Pese su nombre en inglés, este blog se enfoca en promover los métodos Bayesianos para el análisis de datos, que en los últimos años se han vuelto muy populares debido a su alta capacidad predictiva y la facilidad de capturar la incertidumbre de los datos. Cada post introduce varios conceptos y modelos estadísticos, presentando el análisis de un conjunto de datos real. Ademas, presentamos la implementación de los modelos en diferentes lenguajes de programación como [R](https://cran.r-project.org/), [Python](https://www.python.org/) y [Julia](https://julialang.org/), usando diferentes librerías como [Stan](https://mc-stan.org/), [PyMC](https://www.pymc.io/welcome.html) y [Turing](https://turing.ml/stable/). 
 
 ## Contenido 
