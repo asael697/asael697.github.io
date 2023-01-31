@@ -9,7 +9,7 @@
 <meta name="author" content="Asael Alonzo Matamoros">
 <meta name="dcterms.date" content="2022-11-13">
 
-<title>asael_am - Applied Bayesian Regression</title>
+<title>asael_am - Applied Bayesian Modeling</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -157,7 +157,7 @@ div.csl-indent {
 <header id="title-block-header" class="quarto-title-block default page-columns page-full">
   <div class="quarto-title-banner page-columns page-full">
     <div class="quarto-title column-body">
-      <h1 class="title">Applied Bayesian Regression</h1>
+      <h1 class="title">Applied Bayesian Modeling</h1>
                                 <div class="quarto-categories">
                 <div class="quarto-category">news</div>
                 <div class="quarto-category">introduction</div>
@@ -190,19 +190,12 @@ div.csl-indent {
   </div>
   <div class="about-contents">
      <main class="content quarto-banner-title-block" id="quarto-document-content">
-<p>Este post presenta el contenido, direcciones y detalles de “<em>Applied Bayesian Regression.</em>”</p>
-<p>La segunda parte del curso se impartirá regresión Bayesiana aplicada, el objetivo principal es que el estudiante pueda resolver un problema de regresión con un conjunto de datos reales mediante un ordenador, independiente del enfoque de inferencia a utilizar.</p>
-<p>El material de la clase se encuentra en el repositorio <a href="https://github.com/asael697/Appplied-Bayesian-Regression">Applied-Bayesian-Regression</a>. Este presenta el contenido en cuadernos de la clase de “Modelos lineales” de la ’Maestría en Matemática, UNAH”, tercer periodo del año 2022. Los archivos más importantes son:</p>
-<ul>
-<li><p><a href="https://github.com/asael697/Appplied-Bayesian-Regression/tree/main/Notebooks">Notebooks</a>: Guarda los cuadernos de la clase en formato <code>.md</code> para que puedan ser visualizados de forma rápida por los alumnos.</p></li>
-<li><p><a href="https://github.com/asael697/Appplied-Bayesian-Regression/tree/main/qmd">qmd</a>: Guardas los cuadernos en <code>quarto</code> para poder visualizar el archivo <code>.html</code> usado en la clase, descargar el archivo, y hacer un render desde la consola u <code>Rstudio</code>.</p></li>
-</ul>
-<p>La clase se imparte los <code>Lunes, Martes</code> y <code>Jueves</code> a las <code>17:00</code> horas (GMT -6), Para acceder al enlace zoom de la clase presione <a href="https://aalto.zoom.us/j/63860483890">aquí</a>.</p>
+<p>Hola a todos, sean bienvenidos a mi blog en español: “<em>Applied Bayesian modeling.</em>” Pese su nombre en inglés, este blog se enfoca en promover los métodos Bayesianos para el análisis de datos, que en los últimos años se han vuelto muy populares debido a su alta capacidad predictiva y la facilidad de capturar la incertidumbre de los datos. Cada post introduce varios conceptos y modelos estadísticos, presentando el análisis de un conjunto de datos real. Ademas, presentamos la implementación de los modelos en diferentes lenguajes de programación como <a href="https://cran.r-project.org/">R</a>, <a href="https://www.python.org/">Python</a> y <a href="https://julialang.org/">Julia</a>, usando diferentes librerías como <a href="https://mc-stan.org/">Stan</a>, <a href="https://www.pymc.io/welcome.html">PyMC</a> y <a href="https://turing.ml/stable/">Turing</a>.</p>
 <section id="contenido" class="level2">
 <h2 data-anchor-id="contenido">Contenido</h2>
-<p>El contenido para el resto del curso es:</p>
+<p>El contenido para el resto del blog es:</p>
 <ul>
-<li><p>Regresión aplicada</p>
+<li><p>Inferencia Clásica</p>
 <ul>
 <li>Verosimilitud y función de enlace.</li>
 <li>L-BFGS algorithm.</li>
@@ -210,7 +203,7 @@ div.csl-indent {
 <li>Análisis de residuos, ANOVA y <span class="math inline">R^2</span> ajustado.</li>
 <li>selección del modelos (BIC, RMSE, MAPE, CV)</li>
 </ul></li>
-<li><p>Repaso de inferencia Bayesiana y Bayesian workflow</p>
+<li><p>Inferencia Bayesiana y Bayesian workflow</p>
 <ul>
 <li>Prior, likelihood, Posterior</li>
 <li>MCMC</li>
@@ -218,11 +211,28 @@ div.csl-indent {
 <li>Posterior predictive checks</li>
 <li>Bayes factor, ELPD, LOO-CV.</li>
 </ul></li>
-<li><p>Bayesian Regression</p>
+<li><p>Regresión</p>
 <ul>
-<li>Bayesian GLMs, normal, Binomial, Poisson and Negative Binomial regressions</li>
-<li>Regularized priors (R2-D2, Horseshoe, Spike Lab)</li>
-<li>Gaussian process regression.</li>
+<li>GLMs, normal, Binomial, Poisson and Negative Binomial regressions.</li>
+<li>Modelo lineal con priors regularizadas priors (R2-D2, Horseshoe, Spike Lab).</li>
+<li>Generalized additve models (GAM).</li>
+</ul></li>
+<li><p>Series de Tiempo</p>
+<ul>
+<li>Modelos SARIMA</li>
+<li>Modelos de exponenciales de Holt, Winters, de suavizado lineal</li>
+<li>Modelos lineales dinámicos (DLM)</li>
+<li>Modelos GARCH y SVM</li>
+<li>Modelos de tendencia local y global (LGT).</li>
+</ul></li>
+<li><p>Metodos no parametricos</p>
+<ul>
+<li>Splines</li>
+<li>Wavelets</li>
+<li>Regresión Kernel</li>
+<li>Procesos Gaussianos</li>
+<li>Procesos de Dirichlet.</li>
+<li>Bayesian additive regression trees</li>
 </ul></li>
 </ul>
 </section>

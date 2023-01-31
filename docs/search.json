@@ -107,21 +107,21 @@
   {
     "objectID": "ABM/posts/ABR/index.html",
     "href": "ABM/posts/ABR/index.html",
-    "title": "Applied Bayesian Regression",
+    "title": "Applied Bayesian Modeling",
     "section": "",
-    "text": "Este post presenta el contenido, direcciones y detalles de “Applied Bayesian Regression.”\nLa segunda parte del curso se impartirá regresión Bayesiana aplicada, el objetivo principal es que el estudiante pueda resolver un problema de regresión con un conjunto de datos reales mediante un ordenador, independiente del enfoque de inferencia a utilizar.\nEl material de la clase se encuentra en el repositorio Applied-Bayesian-Regression. Este presenta el contenido en cuadernos de la clase de “Modelos lineales” de la ’Maestría en Matemática, UNAH”, tercer periodo del año 2022. Los archivos más importantes son:\nLa clase se imparte los Lunes, Martes y Jueves a las 17:00 horas (GMT -6), Para acceder al enlace zoom de la clase presione aquí."
+    "text": "Hola a todos, sean bienvenidos a mi blog en español: “Applied Bayesian modeling.” Pese su nombre en inglés, este blog se enfoca en promover los métodos Bayesianos para el análisis de datos, que en los últimos años se han vuelto muy populares debido a su alta capacidad predictiva y la facilidad de capturar la incertidumbre de los datos. Cada post introduce varios conceptos y modelos estadísticos, presentando el análisis de un conjunto de datos real. Ademas, presentamos la implementación de los modelos en diferentes lenguajes de programación como R, Python y Julia, usando diferentes librerías como Stan, PyMC y Turing."
   },
   {
     "objectID": "ABM/posts/ABR/index.html#contenido",
     "href": "ABM/posts/ABR/index.html#contenido",
-    "title": "Applied Bayesian Regression",
+    "title": "Applied Bayesian Modeling",
     "section": "Contenido",
-    "text": "Contenido\nEl contenido para el resto del curso es:\n\nRegresión aplicada\n\nVerosimilitud y función de enlace.\nL-BFGS algorithm.\nIntervalos de confianza, Jackniffe y Bootstrap.\nAnálisis de residuos, ANOVA y R^2 ajustado.\nselección del modelos (BIC, RMSE, MAPE, CV)\n\nRepaso de inferencia Bayesiana y Bayesian workflow\n\nPrior, likelihood, Posterior\nMCMC\nPredictive distribution\nPosterior predictive checks\nBayes factor, ELPD, LOO-CV.\n\nBayesian Regression\n\nBayesian GLMs, normal, Binomial, Poisson and Negative Binomial regressions\nRegularized priors (R2-D2, Horseshoe, Spike Lab)\nGaussian process regression."
+    "text": "Contenido\nEl contenido para el resto del blog es:\n\nInferencia Clásica\n\nVerosimilitud y función de enlace.\nL-BFGS algorithm.\nIntervalos de confianza, Jackniffe y Bootstrap.\nAnálisis de residuos, ANOVA y R^2 ajustado.\nselección del modelos (BIC, RMSE, MAPE, CV)\n\nInferencia Bayesiana y Bayesian workflow\n\nPrior, likelihood, Posterior\nMCMC\nPredictive distribution\nPosterior predictive checks\nBayes factor, ELPD, LOO-CV.\n\nRegresión\n\nGLMs, normal, Binomial, Poisson and Negative Binomial regressions.\nModelo lineal con priors regularizadas priors (R2-D2, Horseshoe, Spike Lab).\nGeneralized additve models (GAM).\n\nSeries de Tiempo\n\nModelos SARIMA\nModelos de exponenciales de Holt, Winters, de suavizado lineal\nModelos lineales dinámicos (DLM)\nModelos GARCH y SVM\nModelos de tendencia local y global (LGT).\n\nMetodos no parametricos\n\nSplines\nWavelets\nRegresión Kernel\nProcesos Gaussianos\nProcesos de Dirichlet.\nBayesian additive regression trees"
   },
   {
     "objectID": "ABM/posts/ABR/index.html#material",
     "href": "ABM/posts/ABR/index.html#material",
-    "title": "Applied Bayesian Regression",
+    "title": "Applied Bayesian Modeling",
     "section": "Material",
     "text": "Material\nEl material de la clase se extrae de 3 libros, varios artículos y diferentes paquetes de R y Python estos son libres y se encuentran en formato digital en la web.\n\nLibros\n\nBayes Rules! An Introduction to Applied Bayesian Modeling. Johnson, Ott and Dogucu, (2021).\nBeyond Multiple Linear Regression Applied Generalized Linear Models and Multilevel Models in R. Roback and Legler (2021).\nBayesian Modeling and Computation in Python. Martin, Kumar, and Lao (2021).\n\n\n\nArtículos principales\n\nBayesian Regression Using a Prior on the Model Fit: The R2-D2 shrinkage Prior. Zhang et al. (2022)\nHandling Sparsity via the Horseshoe. Carvalho, Polson, and Scott (2009)\nBayesian Variable Selection in Linear Regression. Mitchell and Beauchamp (1988)\n\n\n\nPaquetes\nLos lenguajes de programación a usar son R y Python.\n\n\nR core team\n\nProbabilistic Programming Language: Stan mc-stan.\npaquetes:\n\nrstanarm, paquete para ajustar modelos lineales.\nbayesplot, visualización de posterioris.\nloo seleccion de modelos.\n\n\n\n\nPython\n\nProbabilistic Programming Language: PyMC.\npaquetes:\n\nBambi, Ajustar modelos lineales.\nArviZ, visualización de datos y selección de modelos con LOO."
   },
