@@ -1,5 +1,5 @@
 ---
-title: "Applied Bayesian Regression"
+title: "Applied Bayesian Modeling"
 author: "Asael Alonzo Matamoros"
 date: "2022-11-13"
 categories: [news,introduction, Baseline]
@@ -9,23 +9,13 @@ about:
   template: marquee
 ---
 
-Este post presenta el contenido, direcciones y detalles de "*Applied Bayesian Regression.*"
+Hola a todos, sean bienvenidos a  mi blog en español: "*Applied Bayesian modeling.*" Pese su nombre en inglés, este blog se enfoca en promover los métodos Bayesianos para el análisis de datos, que en los últimos años se han vuelto muy populares debido a su alta capacidad predictiva y la facilidad de capturar la incertidumbre de los datos. Cada post introduce varios conceptos y modelos estadísticos, presentando el análisis de un conjunto de datos real. Ademas, presentamos la implementación de los modelos en diferentes lenguajes de programación como [R](https://cran.r-project.org/), [Python](https://www.python.org/) y [Julia](https://julialang.org/), usando diferentes librerías como [Stan](https://mc-stan.org/), [PyMC](https://www.pymc.io/welcome.html) y [Turing](https://turing.ml/stable/). 
 
-La segunda parte del curso se impartirá regresión Bayesiana aplicada, el objetivo principal es que el estudiante pueda resolver un problema de regresión con un conjunto de datos reales mediante un ordenador, independiente del enfoque de inferencia a utilizar. 
+## Contenido 
 
-El material de la clase se encuentra en el repositorio [Applied-Bayesian-Regression](https://github.com/asael697/Appplied-Bayesian-Regression). Este presenta el contenido en cuadernos de la clase de "Modelos lineales" de la 'Maestría en Matemática, UNAH", tercer periodo del año 2022. Los archivos más importantes son: 
+El contenido para el resto del blog es:
 
-  + [Notebooks](https://github.com/asael697/Appplied-Bayesian-Regression/tree/main/Notebooks): Guarda los cuadernos de la clase en formato `.md`  para que puedan ser visualizados de forma rápida por los alumnos.
-  
-  + [qmd](https://github.com/asael697/Appplied-Bayesian-Regression/tree/main/qmd): Guardas los cuadernos en `quarto` para poder visualizar el archivo `.html` usado en la clase, descargar el archivo, y hacer un render desde la consola u `Rstudio`.
-  
-La clase se imparte los `Lunes, Martes` y `Jueves` a las `17:00` horas (GMT -6), Para acceder al enlace zoom de la clase presione [aquí](https://aalto.zoom.us/j/63860483890).
-
-## Contenido
-
-El contenido para el resto del curso es:
-
- + Regresión aplicada
+ + Inferencia Clásica
   
      - Verosimilitud y función de enlace.
      - L-BFGS algorithm.
@@ -33,7 +23,7 @@ El contenido para el resto del curso es:
      - Análisis de residuos, ANOVA  y $R^2$ ajustado.
      - selección del modelos (BIC, RMSE, MAPE, CV)
  
- + Repaso de inferencia Bayesiana y Bayesian workflow
+ + Inferencia Bayesiana y Bayesian workflow
 
     - Prior, likelihood, Posterior
     - MCMC
@@ -41,12 +31,29 @@ El contenido para el resto del curso es:
     - Posterior predictive checks
     - Bayes factor, ELPD, LOO-CV.
   
- + Bayesian Regression
+ + Regresión
    
-   - Bayesian GLMs, normal, Binomial, Poisson and Negative Binomial regressions
-   - Regularized priors (R2-D2, Horseshoe, Spike Lab)
-   - Gaussian process regression.
+   - GLMs, normal, Binomial, Poisson and Negative Binomial regressions.
+   - Modelo lineal con priors regularizadas priors (R2-D2, Horseshoe, Spike Lab).
+   - Generalized additve models (GAM).
+
+ + Series de Tiempo
    
+   - Modelos SARIMA
+   - Modelos de exponenciales de Holt, Winters, de suavizado lineal
+   - Modelos lineales dinámicos (DLM)
+   - Modelos GARCH y SVM
+   - Modelos de tendencia local y global (LGT).
+   
+ + Metodos no parametricos
+   
+   - Splines
+   - Wavelets
+   - Regresión Kernel
+   - Procesos Gaussianos
+   - Procesos de Dirichlet. 
+   - Bayesian additive regression trees 
+
 ## Material 
   
 El material de la clase se extrae de 3 libros, varios artículos y diferentes paquetes de R y Python estos son libres y se encuentran en formato digital en la web. 
